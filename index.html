@@ -101,13 +101,16 @@
             border-radius: 5px;
             background-color: rgba(255, 255, 0, 0.3);
         }
+
+        .translatable.active::after {
+    opacity: 1;
+}
     </style>
 </head>
 <body>
     <!-- Top Section: Video and Paragraph -->
     <div class="top-section">
-        <iframe id="youtube-video" width="560" height="315" src="https://www.youtube.com/embed/Lq7WK6CDeTw?enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <p>
+        <iframe id="youtube-video" width="560" height="315" src="https://www.youtube.com/embed/Lq7WK6CDeTw?enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>        <p>
             <span class="translatable" data-start="0.5" data-end="1.7" title="It was">C’était</span>
             <span class="translatable" data-start="0.5" data-end="1.7" title="a">une</span>
             <span class="translatable" data-start="0.5" data-end="1.7" title="day">journée</span>
@@ -781,17 +784,17 @@
                 }
             });
         }
-
+    
         function onPlayerReady(event) {
             console.log("YouTube Player is ready.");
         }
-
+    
         function onPlayerStateChange(event) {
             if (event.data === YT.PlayerState.PLAYING) {
                 syncTextWithVideo();
             }
         }
-
+    
         // Function to sync text with video
         function syncTextWithVideo() {
             const words = document.querySelectorAll('.translatable');
@@ -808,12 +811,30 @@
                 });
             }, 100); // Check every 100ms
         }
-
+    
         // Load YouTube IFrame API
         const tag = document.createElement('script');
         tag.src = "https://www.youtube.com/iframe_api";
         const firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    
+        // Add click functionality for mobile
+        const translatableWords = document.querySelectorAll('.translatable');
+        translatableWords.forEach(word => {
+            word.addEventListener('click', (e) => {
+                // Stop event propagation to prevent the document click from hiding the translation immediately
+                e.stopPropagation();
+                // Toggle the 'active' class to show/hide the translation
+                word.classList.toggle('active');
+            });
+        });
+    
+        // Hide translation when clicking outside
+        document.addEventListener('click', () => {
+            translatableWords.forEach(word => {
+                word.classList.remove('active');
+            });
+        });
     </script>
 </body>
 </html>
