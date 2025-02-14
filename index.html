@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,16 +14,19 @@
             font-family: Arial, sans-serif;
             padding: 20px;
         }
+
         .top-section {
             text-align: center;
             margin-bottom: 40px;
         }
+
         .top-section iframe {
             max-width: 100%;
             height: auto;
             border-radius: 10px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
         }
+
         .top-section p {
             font-size: 18px;
             line-height: 1.6;
@@ -30,12 +34,14 @@
             margin: 20px auto;
             text-align: left;
         }
+
         .flashcards-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 20px;
         }
+
         .polaroid {
             background: white;
             padding: 15px;
@@ -44,6 +50,7 @@
             width: 200px;
             transform: rotate(-3deg);
         }
+
         .image-container {
             width: 100%;
             height: 200px;
@@ -52,6 +59,7 @@
             justify-content: center;
             align-items: center;
         }
+
         .caption {
             font-family: 'Courier New', monospace;
             font-size: 18px;
@@ -60,6 +68,7 @@
             align-items: center;
             justify-content: center;
         }
+
         .play-button {
             margin-left: 10px;
             cursor: pointer;
@@ -71,9 +80,11 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
+
         .translatable:hover {
             background-color: yellow;
         }
+
         .translatable::after {
             content: attr(title);
             position: absolute;
@@ -90,6 +101,7 @@
             transition: opacity 0.3s ease;
             pointer-events: none;
         }
+
         .translatable:hover::after {
             opacity: 1;
         }
@@ -103,14 +115,19 @@
         }
 
         .translatable.active::after {
-    opacity: 1;
-}
+            opacity: 1;
+        }
     </style>
 </head>
+
 <body>
     <!-- Top Section: Video and Paragraph -->
     <div class="top-section">
-        <iframe id="youtube-video" width="560" height="315" src="https://www.youtube.com/embed/Lq7WK6CDeTw?enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>        <p>
+        <iframe id="youtube-video" width="560" height="315"
+            src="https://www.youtube.com/embed/Lq7WK6CDeTw?enablejsapi=1" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        <p>
             <span class="translatable" data-start="0.5" data-end="1.7" title="It was">C’était</span>
             <span class="translatable" data-start="0.5" data-end="1.7" title="a">une</span>
             <span class="translatable" data-start="0.5" data-end="1.7" title="day">journée</span>
@@ -194,7 +211,7 @@
             <span class="translatable" data-start="27.2" data-end="28.9" title="a">un</span>
             <span class="translatable" data-start="27.2" data-end="28.9" title="corner">coin</span>
             <span class="translatable" data-start="27.2" data-end="28.9" title="contained">contenait</span>
-            
+
             <span class="translatable" data-start="28.9" data-end="30.8" title="a few">quelques</span>
             <span class="translatable" data-start="28.9" data-end="30.8" title="magazines">magazines</span>
             <span class="translatable" data-start="28.9" data-end="30.8" title="and">et</span>
@@ -211,7 +228,8 @@
             <span class="translatable" data-start="34.2" data-end="36.5" title="a">un</span>
             <span class="translatable" data-start="34.2" data-end="36.5" title="stack">tas</span>
             <span class="translatable" data-start="34.2" data-end="36.5" title="of">de</span>
-            <span class="translatable" data-start="34.2" data-end="36.5" title="important papers">papiers importants</span>,
+            <span class="translatable" data-start="34.2" data-end="36.5" title="important papers">papiers
+                importants</span>,
 
             <span class="translatable" data-start="36.5" data-end="39.2" title="and">et</span>
             <span class="translatable" data-start="36.5" data-end="39.2" title="the">le</span>
@@ -251,7 +269,8 @@
             <span class="translatable" data-start="48.9" data-end="52.2" title="a">une</span>
             <span class="translatable" data-start="48.9" data-end="52.2" title="small">petite</span>
             <span class="translatable" data-start="48.9" data-end="52.2" title="table">table</span>,
-            <span class="translatable" data-start="48.9" data-end="52.2" title="folding chairs">des chaises pliantes</span>,
+            <span class="translatable" data-start="48.9" data-end="52.2" title="folding chairs">des chaises
+                pliantes</span>,
             <span class="translatable" data-start="48.9" data-end="52.2" title="and">et</span>
             <span class="translatable" data-start="48.9" data-end="52.2" title="a">un</span>
             <span class="translatable" data-start="48.9" data-end="52.2" title="watering can">arrosoir</span>
@@ -273,7 +292,7 @@
             <span class="translatable" data-start="56.9" data-end="58.1" title="this">cette</span>
             <span class="translatable" data-start="56.9" data-end="58.1" title="home">maison</span>
             <span class="translatable" data-start="56.9" data-end="58.1" title="lively">bien vivante</span>.
-       
+
         </p>
     </div>
 
@@ -297,7 +316,8 @@
         <!-- Flashcard 1: Tranquille Journée -->
         <div class="polaroid">
             <div class="image-container">
-                <img src="assets/journee-tranquille.png" alt="Journée tranquille" style="max-width: 100%; max-height: 100%;">
+                <img src="assets/journee-tranquille.png" alt="Journée tranquille"
+                    style="max-width: 100%; max-height: 100%;">
             </div>
             <div class="caption">
                 Journée tranquille
@@ -308,467 +328,496 @@
                 Your browser does not support the audio element.
             </audio>
         </div>
-        
-
-    <!-- Flashcard 2: La Maison -->
-    <!-- <div class="polaroid">
-    <div class="image-container">
-    <img src="assets/La-maison.png" alt="La maison" style="max-width: 100%; max-height: 100%;">
-    </div>
-    <div class="caption">
-    La maison
-    <button class="play-button" onclick="document.getElementById('audio2').play()">▶️</button>
-    </div>
-    <audio id="audio2" controls style="display: none;">
-    <source src="assets/house.mov" type="audio/mp4">
-    Your browser does not support the audio element.
-    </audio>
-    </div> -->
 
 
-    <!-- Flashcard 3: Dans le Couloir -->
-    <div class="polaroid">
-    <div class="image-container">
-    <img src="assets/Dans-le-couloir.png" alt="Dans le couloir" style="max-width: 100%; max-height: 100%;">
-    </div>
-    <div class="caption">
-    Dans le couloir
-    <button class="play-button" onclick="document.getElementById('audio3').play()">▶️</button>
-    </div>
-    <audio id="audio3" controls style="display: none;">
-    <source src="assets/Audio/Dans-le-couloir.mp3" type="audio/mp4">
-    Your browser does not support the audio element.
-    </audio>
-    </div>
-    <!-- Flashcard 4: Une Pile de Lettres -->
-    <div class="polaroid">
-    <div class="image-container">
-    <img src="assets/Une-pile-de-lettres.jpg" alt="Une pile de lettres" style="max-width: 100%; max-height: 100%;">
-    </div>
-    <div class="caption">
-    Une pile de lettres
-    <button class="play-button" onclick="document.getElementById('audio4').play()">▶️</button>
-    </div>
-    <audio id="audio4" controls style="display: none;">
-    <source src="assets/Audio/Une-pile-de-lettres.mp3" type="audio/mp4">
-    Your browser does not support the audio element.
-    </audio>
-    </div>
-    <!-- Flashcard 5: La Console -->
-    <div class="polaroid">
-    <div class="image-container">
-    <img src="assets/console.jpg" alt="La console" style="max-width: 100%; max-height: 100%;">
-    </div>
-    <div class="caption">
-    La console
-    <button class="play-button" onclick="document.getElementById('audio5').play()">▶️</button>
-    </div>
-    <audio id="audio5" controls style="display: none;">
-    <source src="assets/console.mov" type="audio/mp4">
-    Your browser does not support the audio element.
-    </audio>
-    </div>
-    <!-- Flashcard 6: Un Vase Rempli de Fleurs -->
-    <div class="polaroid">
-    <div class="image-container">
-    <img src="assets/vase_filled_with_flowers.jpg" alt="Un vase rempli de fleurs" style="max-width: 100%; max-height: 100%;">
-    </div>
-    <div class="caption">
-    Un vase rempli de fleurs
-    <button class="play-button" onclick="document.getElementById('audio6').play()">▶️</button>
-    </div>
-    <audio id="audio6" controls style="display: none;">
-    <source src="assets/vase_filled_with_flowers.mov" type="audio/mp4">
-    Your browser does not support the audio element.
-    </audio>
-    </div>
+        <!-- Flashcard 3: Dans le Couloir -->
+        <div class="polaroid">
+            <div class="image-container">
+                <img src="assets/Dans-le-couloir.png" alt="Dans le couloir" style="max-width: 100%; max-height: 100%;">
+            </div>
+            <div class="caption">
+                Dans le couloir
+                <button class="play-button" onclick="document.getElementById('audio3').play()">▶️</button>
+            </div>
+            <audio id="audio3" controls style="display: none;">
+                <source src="assets/Audio/Dans-le-couloir.mp3" type="audio/mp4">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
 
-    <!-- Flashcard 7: Les Clés -->
-    <div class="polaroid">
-    <div class="image-container">
-    <img src="assets/keys.jpg" alt="Les clés" style="max-width: 100%; max-height: 100%;">
-    </div>
-    <div class="caption">
-    Les clés
-    <button class="play-button" onclick="document.getElementById('audio7').play()">▶️</button>
-    </div>
-    <audio id="audio7" controls style="display: none;">
-    <source src="assets/keys.mov" type="audio/mp4">
-    Your browser does not support the audio element.
-    </audio>
-    </div>
-    <!-- Flashcard 8: Suspendues à un Crochet -->
-    <div class="polaroid">
-    <div class="image-container">
-    <img src="assets/hanging_on_a_hook.jpg" alt="Suspendues à un crochet" style="max-width: 100%; max-height: 100%;">
-    </div>
-    <div class="caption">
-    Suspendues à un crochet
-    <button class="play-button" onclick="document.getElementById('audio8').play()">▶️</button>
-    </div>
-    <audio id="audio8" controls style="display: none;">
-    <source src="assets/hanging_on_a_hook.mov" type="audio/mp4">
-    Your browser does not support the audio element.
-    </audio>
-    </div>
-    <!-- Flashcard 9: Le Salon -->
-    <div class="polaroid">
-    <div class="image-container">
-    <img src="assets/living_room.jpg" alt="Le salon" style="max-width: 100%; max-height: 100%;">
-    </div>
-    <div class="caption">
-    Le salon
-    <button class="play-button" onclick="document.getElementById('audio9').play()">▶️</button>
-    </div>
-    <audio id="audio9" controls style="display: none;">
-    <source src="assets/living_room.mov" type="audio/mp4">
-    Your browser does not support the audio element.
-    </audio>
-    </div>
-    <!-- Flashcard 10: L’Horloge Murale -->
-    <div class="polaroid">
-    <div class="image-container">
-    <img src="assets/wall_clock.jpg" alt="L’horloge murale" style="max-width: 100%; max-height: 100%;">
-    </div>
-    <div class="caption">
-    L’horloge murale
-    <button class="play-button" onclick="document.getElementById('audio10').play()">▶️</button>
-    </div>
-    <audio id="audio10" controls style="display: none;">
-    <source src="assets/wall_clock.mov" type="audio/mp4">
-    Your browser does not support the audio element.
-    </audio>
-    </div>
-    <!-- Flashcard 11: Midi -->
-    <div class="polaroid">
-    <div class="image-container">
-    <img src="assets/noon.jpg" alt="Midi" style="max-width: 100%; max-height: 100%;">
-    </div>
-    <div class="caption">
-    Midi
-    <button class="play-button" onclick="document.getElementById('audio11').play()">▶️</button>
-    </div>
-    <audio id="audio11" controls style="display: none;">
-    <source src="assets/noon.mov" type="audio/mp4">
-    Your browser does not support the audio element.
-    </audio>
-    </div>
-    <!-- Flashcard 12: Une Plante en Pot -->
-    <div class="polaroid">
-    <div class="image-container">
-    <img src="assets/potted_plant.jpg" alt="Une plante en pot" style="max-width: 100%; max-height: 100%;">
-    </div>
-    <div class="caption">
-    Une plante en pot
-    <button class="play-button" onclick="document.getElementById('audio12').play()">▶️</button>
-    </div>
-    <audio id="audio12" controls style="display: none;">
-    <source src="assets/potted_plant.mov" type="audio/mp4">
-    Your browser does not support the audio element.
-    </audio>
-    </div>
+        <!-- Flashcard 4: Une Pile de Lettres -->
+        <div class="polaroid">
+            <div class="image-container">
+                <img src="assets/Une-pile-de-lettres.jpg" alt="Une pile de lettres"
+                    style="max-width: 100%; max-height: 100%;">
+            </div>
+            <div class="caption">
+                Une pile de lettres
+                <button class="play-button" onclick="document.getElementById('audio4').play()">▶️</button>
+            </div>
+            <audio id="audio4" controls style="display: none;">
+                <source src="assets/Audio/Une-pile-de-lettres.mp3" type="audio/mp4">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
 
-<!-- Flashcard 13: Baignée de Lumière Naturelle -->
-<div class="polaroid">
-    <div class="image-container">
-    <img src="assets/bathed_in_natural_light.jpg" alt="Baignée de lumière naturelle" style="max-width: 100%; max-height: 100%;">
-    </div>
-    <div class="caption">
-    Baignée de lumière naturelle
-    <button class="play-button" onclick="document.getElementById('audio13').play()">▶️</button>
-    </div>
-    <audio id="audio13" controls style="display: none;">
-    <source src="assets/bathed_in_natural_light.mov" type="audio/mp4">
-    Your browser does not support the audio element.
-    </audio>
-    </div>
-    <!-- Flashcard 14: L’Étagère -->
-    <div class="polaroid">
-    <div class="image-container">
-    <img src="assets/shelf.jpg" alt="L’étagère" style="max-width: 100%; max-height: 100%;">
-    </div>
-    <div class="caption">
-    L’étagère
-    <button class="play-button" onclick="document.getElementById('audio14').play()">▶️</button>
-    </div>
-    <audio id="audio14" controls style="display: none;">
-    <source src="assets/shelf.mov" type="audio/mp4">
-    Your browser does not support the audio element.
-    </audio>
-    </div>
-    <!-- Flashcard 15: Souvenirs de Vacances -->
-    <div class="polaroid">
-    <div class="image-container">
-    <img src="assets/vacation_memories.jpg" alt="Souvenirs de vacances" style="max-width: 100%; max-height: 100%;">
-    </div>
-    <div class="caption">
-    Souvenirs de vacances
-    <button class="play-button" onclick="document.getElementById('audio15').play()">▶️</button>
-    </div>
-    <audio id="audio15" controls style="display: none;">
-    <source src="assets/vacation_memories.mov" type="audio/mp4">
-    Your browser does not support the audio element.
-    </audio>
-    </div>
-    <!-- Flashcard 16: Un Cadre Photo Familial -->
-    <div class="polaroid">
-    <div class="image-container">
-    <img src="assets/family_photo_frame.jpg" alt="Un cadre photo familial" style="max-width: 100%; max-height: 100%;">
-    </div>
-    <div class="caption">
-    Un cadre photo familial
-    <button class="play-button" onclick="document.getElementById('audio16').play()">▶️</button>
-    </div>
-    <audio id="audio16" controls style="display: none;">
-    <source src="assets/family_photo_frame.mov" type="audio/mp4">
-    Your browser does not support the audio element.
-    </audio>
-    </div>
-    <!-- Flashcard 17: La Corbeille -->
-    <div class="polaroid">
-    <div class="image-container">
-    <img src="assets/basket.jpg" alt="La corbeille" style="max-width: 100%; max-height: 100%;">
-    </div>
-    <div class="caption">
-    La corbeille
-    <button class="play-button" onclick="document.getElementById('audio17').play()">▶️</button>
-    </div>
-    <audio id="audio17" controls style="display: none;">
-    <source src="assets/basket.mov" type="audio/mp4">
-    Your browser does not support the audio element.
-    </audio>
-    </div>
-    <!-- Flashcard 18: Magazines et Journaux -->
-    <div class="polaroid">
-    <div class="image-container">
-    <img src="assets/magazines_and_newspapers.jpg" alt="Magazines et journaux" style="max-width: 100%; max-height: 100%;">
-    </div>
-    <div class="caption">
-    Magazines et journaux
-    <button class="play-button" onclick="document.getElementById('audio18').play()">▶️</button>
-    </div>
-    <audio id="audio18" controls style="display: none;">
-    <source src="assets/magazines_and_newspapers.mov" type="audio/mp4">
-    Your browser does not support the audio element.
-    </audio>
-    </div>
+        <!-- Flashcard 5: La Console -->
+        <div class="polaroid">
+            <div class="image-container">
+                <img src="assets/La-console.jpg" alt="La console" style="max-width: 100%; max-height: 100%;">
+            </div>
+            <div class="caption">
+                La console
+                <button class="play-button" onclick="document.getElementById('audio5').play()">▶️</button>
+            </div>
+            <audio id="audio5" controls style="display: none;">
+                <source src="assets/Audio/La-console.mp3" type="audio/mp4">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
 
-    <!-- Flashcard 19: Recycler -->
-<div class="polaroid">
-    <div class="image-container">
-    <img src="assets/recycle.jpg" alt="Recycler" style="max-width: 100%; max-height: 100%;">
-    </div>
-    <div class="caption">
-    Recycler
-    <button class="play-button" onclick="document.getElementById('audio19').play()">▶️</button>
-    </div>
-    <audio id="audio19" controls style="display: none;">
-    <source src="assets/recycle.mov" type="audio/mp4">
-    Your browser does not support the audio element.
-    </audio>
-    </div>
-    <!-- Flashcard 20: Le Bureau -->
-    <div class="polaroid">
-    <div class="image-container">
-    <img src="assets/office.jpg" alt="Le bureau" style="max-width: 100%; max-height: 100%;">
-    </div>
-    <div class="caption">
-    Le bureau
-    <button class="play-button" onclick="document.getElementById('audio20').play()">▶️</button>
-    </div>
-    <audio id="audio20" controls style="display: none;">
-    <source src="assets/office.mov" type="audio/mp4">
-    Your browser does not support the audio element.
-    </audio>
-    </div>
-    <!-- Flashcard 21: La Lampe de Bureau -->
-    <div class="polaroid">
-    <div class="image-container">
-    <img src="assets/office_lamp.jpg" alt="La lampe de bureau" style="max-width: 100%; max-height: 100%;">
-    </div>
-    <div class="caption">
-    La lampe de bureau
-    <button class="play-button" onclick="document.getElementById('audio21').play()">▶️</button>
-    </div>
-    <audio id="audio21" controls style="display: none;">
-    <source src="assets/office_lamp.mov" type="audio/mp4">
-    Your browser does not support the audio element.
-    </audio>
-    </div>
-    <!-- Flashcard 22: Un Tas de Papiers Importants -->
-    <div class="polaroid">
-    <div class="image-container">
-    <img src="assets/stack_of_important_papers.jpg" alt="Un tas de papiers importants" style="max-width: 100%; max-height: 100%;">
-    </div>
-    <div class="caption">
-    Un tas de papiers importants
-    <button class="play-button" onclick="document.getElementById('audio22').play()">▶️</button>
-    </div>
-    <audio id="audio22" controls style="display: none;">
-    <source src="assets/stack_of_important_papers.mov" type="audio/mp4">
-    Your browser does not support the audio element.
-    </audio>
-    </div>
-    <!-- Flashcard 23: Le Tapis Moelleux -->
-    <div class="polaroid">
-    <div class="image-container">
-    <img src="assets/plush_carpet.jpg" alt="Le tapis moelleux" style="max-width: 100%; max-height: 100%;">
-    </div>
-    <div class="caption">
-    Le tapis moelleux
-    <button class="play-button" onclick="document.getElementById('audio23').play()">▶️</button>
-    </div>
-    <audio id="audio23" controls style="display: none;">
-    <source src="assets/plush_carpet.mov" type="audio/mp4">
-    Your browser does not support the audio element.
-    </audio>
-    </div>
-    <!-- Flashcard 24: La Chaise Pivotante -->
-    <div class="polaroid">
-    <div class="image-container">
-    <img src="assets/swivel_chair.jpg" alt="La chaise pivotante" style="max-width: 100%; max-height: 100%;">
-    </div>
-    <div class="caption">
-    La chaise pivotante
-    <button class="play-button" onclick="document.getElementById('audio24').play()">▶️</button>
-    </div>
-    <audio id="audio24" controls style="display: none;">
-    <source src="assets/swivel_chair.mov" type="audio/mp4">
-    Your browser does not support the audio element.
-    </audio>
-    </div>
+        <!-- Flashcard 6: Un Vase Rempli de Fleurs -->
+        <div class="polaroid">
+            <div class="image-container">
+                <img src="assets/Un-vase-rempli-de-fleurs.jpg" alt="Un vase rempli de fleurs"
+                    style="max-width: 100%; max-height: 100%;">
+            </div>
+            <div class="caption">
+                Un vase rempli de fleurs
+                <button class="play-button" onclick="document.getElementById('audio6').play()">▶️</button>
+            </div>
+            <audio id="audio6" controls style="display: none;">
+                <source src="assets/Audio/Un-vase-rempli-de-fl.mp3" type="audio/mp4">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
 
-<!-- Flashcard 25: Une Journée Productive -->
-<div class="polaroid">
-    <div class="image-container">
-    <img src="assets/productive_day.jpg" alt="Une journée productive" style="max-width: 100%; max-height: 100%;">
-    </div>
-    <div class="caption">
-    Une journée productive
-    <button class="play-button" onclick="document.getElementById('audio25').play()">▶️</button>
-    </div>
-    <audio id="audio25" controls style="display: none;">
-    <source src="assets/productive_day.mov" type="audio/mp4">
-    Your browser does not support the audio element.
-    </audio>
-    </div>
-    <!-- Flashcard 26: Le Balcon -->
-    <div class="polaroid">
-    <div class="image-container">
-    <img src="assets/balcony.jpg" alt="Le balcon" style="max-width: 100%; max-height: 100%;">
-    </div>
-    <div class="caption">
-    Le balcon
-    <button class="play-button" onclick="document.getElementById('audio26').play()">▶️</button>
-    </div>
-    <audio id="audio26" controls style="display: none;">
-    <source src="assets/balcony.mov" type="audio/mp4">
-    Your browser does not support the audio element.
-    </audio>
-    </div>
-    <!-- Flashcard 27: Un Havre de Paix -->
-    <div class="polaroid">
-    <div class="image-container">
-    <img src="assets/haven_of_peace.jpg" alt="Un havre de paix" style="max-width: 100%; max-height: 100%;">
-    </div>
-    <div class="caption">
-    Un havre de paix
-    <button class="play-button" onclick="document.getElementById('audio27').play()">▶️</button>
-    </div>
-    <audio id="audio27" controls style="display: none;">
-    <source src="assets/haven_of_peace.mov" type="audio/mp4">
-    Your browser does not support the audio element.
-    </audio>
-    </div>
-    <!-- Flashcard 28: Une Petite Table -->
-    <div class="polaroid">
-    <div class="image-container">
-    <img src="assets/small_table.jpg" alt="Une petite table" style="max-width: 100%; max-height: 100%;">
-    </div>
-    <div class="caption">
-    Une petite table
-    <button class="play-button" onclick="document.getElementById('audio28').play()">▶️</button>
-    </div>
-    <audio id="audio28" controls style="display: none;">
-    <source src="assets/small_table.mov" type="audio/mp4">
-    Your browser does not support the audio element.
-    </audio>
-    </div>
-    <!-- Flashcard 29: Des Chaises Plantes -->
-    <div class="polaroid">
-    <div class="image-container">
-    <img src="assets/folding_chairs.jpg" alt="Des chaises pliantes" style="max-width: 100%; max-height: 100%;">
-    </div>
-    <div class="caption">
-    Des chaises pliantes
-    <button class="play-button" onclick="document.getElementById('audio29').play()">▶️</button>
-    </div>
-    <audio id="audio29" controls style="display: none;">
-    <source src="assets/folding_chairs.mov" type="audio/mp4">
-    Your browser does not support the audio element.
-    </audio>
-    </div>
-    <!-- Flashcard 30: Un Arrosoir -->
-    <div class="polaroid">
-    <div class="image-container">
-    <img src="assets/watering_can.jpg" alt="Un arrosoir" style="max-width: 100%; max-height: 100%;">
-    </div>
-    <div class="caption">
-    Un arrosoir
-    <button class="play-button" onclick="document.getElementById('audio30').play()">▶️</button>
-    </div>
-    <audio id="audio30" controls style="display: none;">
-    <source src="assets/watering_can.mov" type="audio/mp4">
-    Your browser does not support the audio element.
-    </audio>
-    </div>
+        <!-- Flashcard 7: Les Clés -->
+        <div class="polaroid">
+            <div class="image-container">
+                <img src="assets/Les-cles.jpg" alt="Les clés" style="max-width: 100%; max-height: 100%;">
+            </div>
+            <div class="caption">
+                Les clés
+                <button class="play-button" onclick="document.getElementById('audio7').play()">▶️</button>
+            </div>
+            <audio id="audio7" controls style="display: none;">
+                <source src="assets/Audio/Les-cles.mp3" type="audio/mp4">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        <!-- Flashcard 8: Suspendues à un Crochet -->
+        <div class="polaroid">
+            <div class="image-container">
+                <img src="assets/Suspendues-a-un-crochet.jpg" alt="Suspendues à un crochet"
+                    style="max-width: 100%; max-height: 100%;">
+            </div>
+            <div class="caption">
+                Suspendues à un crochet
+                <button class="play-button" onclick="document.getElementById('audio8').play()">▶️</button>
+            </div>
+            <audio id="audio8" controls style="display: none;">
+                <source src="assets/Audio/Suspendues-a-un-croc.mp3" type="audio/mp4">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        <!-- Flashcard 9: Le Salon -->
+        <div class="polaroid">
+            <div class="image-container">
+                <img src="assets/Le-salon.jpg" alt="Le salon" style="max-width: 100%; max-height: 100%;">
+            </div>
+            <div class="caption">
+                Le salon
+                <button class="play-button" onclick="document.getElementById('audio9').play()">▶️</button>
+            </div>
+            <audio id="audio9" controls style="display: none;">
+                <source src="assets/Audio/Le-salon.mp3" type="audio/mp4">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        <!-- Flashcard 10: L’Horloge Murale -->
+        <div class="polaroid">
+            <div class="image-container">
+                <img src="assets/L-horloge-murale.jpg" alt="L’horloge murale" style="max-width: 100%; max-height: 100%;">
+            </div>
+            <div class="caption">
+                L’horloge murale
+                <button class="play-button" onclick="document.getElementById('audio10').play()">▶️</button>
+            </div>
+            <audio id="audio10" controls style="display: none;">
+                <source src="assets/Audio/L-horloge murale.mp3" type="audio/mp4">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        <!-- Flashcard 11: Midi -->
+        <div class="polaroid">
+            <div class="image-container">
+                <img src="assets/Midi.jpg" alt="Midi" style="max-width: 100%; max-height: 100%;">
+            </div>
+            <div class="caption">
+                Midi
+                <button class="play-button" onclick="document.getElementById('audio11').play()">▶️</button>
+            </div>
+            <audio id="audio11" controls style="display: none;">
+                <source src="assets/Audio/Midi.mp3" type="audio/mp4">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        <!-- Flashcard 12: Une Plante en Pot -->
+        <div class="polaroid">
+            <div class="image-container">
+                <img src="assets/Une-plante-en-pot.jpg" alt="Une plante en pot" style="max-width: 100%; max-height: 100%;">
+            </div>
+            <div class="caption">
+                Une plante en pot
+                <button class="play-button" onclick="document.getElementById('audio12').play()">▶️</button>
+            </div>
+            <audio id="audio12" controls style="display: none;">
+                <source src="assets/Audio/Une-plante-en-pot.mp3" type="audio/mp4">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
 
-<!-- Flashcard 31: Des Pots de Fleurs -->
-<div class="polaroid">
-    <div class="image-container">
-    <img src="assets/flower_pots.jpg" alt="Des pots de fleurs" style="max-width: 100%; max-height: 100%;">
-    </div>
-    <div class="caption">
-    Des pots de fleurs
-    <button class="play-button" onclick="document.getElementById('audio31').play()">▶️</button>
-    </div>
-    <audio id="audio31" controls style="display: none;">
-    <source src="assets/flower_pots.mov" type="audio/mp4">
-    Your browser does not support the audio element.
-    </audio>
-    </div>
-    <!-- Flashcard 32: L’Air Frais -->
-    <div class="polaroid">
-    <div class="image-container">
-    <img src="assets/fresh_air.jpg" alt="L’air frais" style="max-width: 100%; max-height: 100%;">
-    </div>
-    <div class="caption">
-    L’air frais
-    <button class="play-button" onclick="document.getElementById('audio32').play()">▶️</button>
-    </div>
-    <audio id="audio32" controls style="display: none;">
-    <source src="assets/fresh_air.mov" type="audio/mp4">
-    Your browser does not support the audio element.
-    </audio>
-    </div>
-    <!-- Flashcard 33: Une Ambiance Paisible -->
-    <div class="polaroid">
-    <div class="image-container">
-    <img src="assets/peaceful_atmosphere.jpg" alt="Une ambiance paisible" style="max-width: 100%; max-height: 100%;">
-    </div>
-    <div class="caption">
-    Une ambiance paisible
-    <button class="play-button" onclick="document.getElementById('audio33').play()">▶️</button>
-    </div>
-    <audio id="audio33" controls style="display: none;">
-    <source src="assets/peaceful_atmosphere.mov" type="audio/mp4">
-    Your browser does not support the audio element.
-    </audio>
-    </div>
+        <!-- Flashcard 13: Baignée de Lumière Naturelle -->
+        <div class="polaroid">
+            <div class="image-container">
+                <img src="assets/Baignee-de-lumiere-naturelle.jpg" alt="Baignée de lumière naturelle"
+                    style="max-width: 100%; max-height: 100%;">
+            </div>
+            <div class="caption">
+                Baignée de lumière naturelle
+                <button class="play-button" onclick="document.getElementById('audio13').play()">▶️</button>
+            </div>
+            <audio id="audio13" controls style="display: none;">
+                <source src="assets/Audio/Baignee-de lumiere-n.mp3" type="audio/mp4">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        <!-- Flashcard 14: L’Étagère -->
+        <div class="polaroid">
+            <div class="image-container">
+                <img src="assets/L-etagere.jpg" alt="L’étagère" style="max-width: 100%; max-height: 100%;">
+            </div>
+            <div class="caption">
+                L’étagère
+                <button class="play-button" onclick="document.getElementById('audio14').play()">▶️</button>
+            </div>
+            <audio id="audio14" controls style="display: none;">
+                <source src="assets/Audio/L-etagere.mp3" type="audio/mp4">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        <!-- Flashcard 15: Souvenirs de Vacances -->
+        <div class="polaroid">
+            <div class="image-container">
+                <img src="assets/Souvenirs-de-vacances.jpg" alt="Souvenirs de vacances"
+                    style="max-width: 100%; max-height: 100%;">
+            </div>
+            <div class="caption">
+                Souvenirs de vacances
+                <button class="play-button" onclick="document.getElementById('audio15').play()">▶️</button>
+            </div>
+            <audio id="audio15" controls style="display: none;">
+                <source src="assets/Audio/Souvenirs-de-vacance.mp3" type="audio/mp4">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        <!-- Flashcard 16: Un Cadre Photo Familial -->
+        <div class="polaroid">
+            <div class="image-container">
+                <img src="assets/Un-cadre-photo-familial.jpg" alt="Un cadre photo familial"
+                    style="max-width: 100%; max-height: 100%;">
+            </div>
+            <div class="caption">
+                Un cadre photo familial
+                <button class="play-button" onclick="document.getElementById('audio16').play()">▶️</button>
+            </div>
+            <audio id="audio16" controls style="display: none;">
+                <source src="assets/Audio/Un-cadre-photo-famil.mp3" type="audio/mp4">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        <!-- Flashcard 17: La Corbeille -->
+        <div class="polaroid">
+            <div class="image-container">
+                <img src="assets/La-corbeille.jpg" alt="La corbeille" style="max-width: 100%; max-height: 100%;">
+            </div>
+            <div class="caption">
+                La corbeille
+                <button class="play-button" onclick="document.getElementById('audio17').play()">▶️</button>
+            </div>
+            <audio id="audio17" controls style="display: none;">
+                <source src="assets/Audio/La-corbeille.mp3" type="audio/mp4">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        <!-- Flashcard 18: Magazines et Journaux -->
+        <div class="polaroid">
+            <div class="image-container">
+                <img src="assets/Magazines-et-journaux.jpg" alt="Magazines et journaux"
+                    style="max-width: 100%; max-height: 100%;">
+            </div>
+            <div class="caption">
+                Magazines et journaux
+                <button class="play-button" onclick="document.getElementById('audio18').play()">▶️</button>
+            </div>
+            <audio id="audio18" controls style="display: none;">
+                <source src="assets/Audio/Magazines-et-journau.mp3" type="audio/mp4">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
 
+        <!-- Flashcard 19: Recycler -->
+        <div class="polaroid">
+            <div class="image-container">
+                <img src="assets/recycle.jpg" alt="Recycler" style="max-width: 100%; max-height: 100%;">
+            </div>
+            <div class="caption">
+                Recycler
+                <button class="play-button" onclick="document.getElementById('audio19').play()">▶️</button>
+            </div>
+            <audio id="audio19" controls style="display: none;">
+                <source src="assets/recycle.mov" type="audio/mp4">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        <!-- Flashcard 20: Le Bureau -->
+        <div class="polaroid">
+            <div class="image-container">
+                <img src="assets/office.jpg" alt="Le bureau" style="max-width: 100%; max-height: 100%;">
+            </div>
+            <div class="caption">
+                Le bureau
+                <button class="play-button" onclick="document.getElementById('audio20').play()">▶️</button>
+            </div>
+            <audio id="audio20" controls style="display: none;">
+                <source src="assets/office.mov" type="audio/mp4">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        <!-- Flashcard 21: La Lampe de Bureau -->
+        <div class="polaroid">
+            <div class="image-container">
+                <img src="assets/office_lamp.jpg" alt="La lampe de bureau" style="max-width: 100%; max-height: 100%;">
+            </div>
+            <div class="caption">
+                La lampe de bureau
+                <button class="play-button" onclick="document.getElementById('audio21').play()">▶️</button>
+            </div>
+            <audio id="audio21" controls style="display: none;">
+                <source src="assets/office_lamp.mov" type="audio/mp4">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        <!-- Flashcard 22: Un Tas de Papiers Importants -->
+        <div class="polaroid">
+            <div class="image-container">
+                <img src="assets/stack_of_important_papers.jpg" alt="Un tas de papiers importants"
+                    style="max-width: 100%; max-height: 100%;">
+            </div>
+            <div class="caption">
+                Un tas de papiers importants
+                <button class="play-button" onclick="document.getElementById('audio22').play()">▶️</button>
+            </div>
+            <audio id="audio22" controls style="display: none;">
+                <source src="assets/stack_of_important_papers.mov" type="audio/mp4">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        <!-- Flashcard 23: Le Tapis Moelleux -->
+        <div class="polaroid">
+            <div class="image-container">
+                <img src="assets/plush_carpet.jpg" alt="Le tapis moelleux" style="max-width: 100%; max-height: 100%;">
+            </div>
+            <div class="caption">
+                Le tapis moelleux
+                <button class="play-button" onclick="document.getElementById('audio23').play()">▶️</button>
+            </div>
+            <audio id="audio23" controls style="display: none;">
+                <source src="assets/plush_carpet.mov" type="audio/mp4">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        <!-- Flashcard 24: La Chaise Pivotante -->
+        <div class="polaroid">
+            <div class="image-container">
+                <img src="assets/swivel_chair.jpg" alt="La chaise pivotante" style="max-width: 100%; max-height: 100%;">
+            </div>
+            <div class="caption">
+                La chaise pivotante
+                <button class="play-button" onclick="document.getElementById('audio24').play()">▶️</button>
+            </div>
+            <audio id="audio24" controls style="display: none;">
+                <source src="assets/swivel_chair.mov" type="audio/mp4">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
 
+        <!-- Flashcard 25: Une Journée Productive -->
+        <div class="polaroid">
+            <div class="image-container">
+                <img src="assets/productive_day.jpg" alt="Une journée productive"
+                    style="max-width: 100%; max-height: 100%;">
+            </div>
+            <div class="caption">
+                Une journée productive
+                <button class="play-button" onclick="document.getElementById('audio25').play()">▶️</button>
+            </div>
+            <audio id="audio25" controls style="display: none;">
+                <source src="assets/productive_day.mov" type="audio/mp4">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        <!-- Flashcard 26: Le Balcon -->
+        <div class="polaroid">
+            <div class="image-container">
+                <img src="assets/balcony.jpg" alt="Le balcon" style="max-width: 100%; max-height: 100%;">
+            </div>
+            <div class="caption">
+                Le balcon
+                <button class="play-button" onclick="document.getElementById('audio26').play()">▶️</button>
+            </div>
+            <audio id="audio26" controls style="display: none;">
+                <source src="assets/balcony.mov" type="audio/mp4">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        <!-- Flashcard 27: Un Havre de Paix -->
+        <div class="polaroid">
+            <div class="image-container">
+                <img src="assets/haven_of_peace.jpg" alt="Un havre de paix" style="max-width: 100%; max-height: 100%;">
+            </div>
+            <div class="caption">
+                Un havre de paix
+                <button class="play-button" onclick="document.getElementById('audio27').play()">▶️</button>
+            </div>
+            <audio id="audio27" controls style="display: none;">
+                <source src="assets/haven_of_peace.mov" type="audio/mp4">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        <!-- Flashcard 28: Une Petite Table -->
+        <div class="polaroid">
+            <div class="image-container">
+                <img src="assets/small_table.jpg" alt="Une petite table" style="max-width: 100%; max-height: 100%;">
+            </div>
+            <div class="caption">
+                Une petite table
+                <button class="play-button" onclick="document.getElementById('audio28').play()">▶️</button>
+            </div>
+            <audio id="audio28" controls style="display: none;">
+                <source src="assets/small_table.mov" type="audio/mp4">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        <!-- Flashcard 29: Des Chaises Plantes -->
+        <div class="polaroid">
+            <div class="image-container">
+                <img src="assets/folding_chairs.jpg" alt="Des chaises pliantes"
+                    style="max-width: 100%; max-height: 100%;">
+            </div>
+            <div class="caption">
+                Des chaises pliantes
+                <button class="play-button" onclick="document.getElementById('audio29').play()">▶️</button>
+            </div>
+            <audio id="audio29" controls style="display: none;">
+                <source src="assets/folding_chairs.mov" type="audio/mp4">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        <!-- Flashcard 30: Un Arrosoir -->
+        <div class="polaroid">
+            <div class="image-container">
+                <img src="assets/watering_can.jpg" alt="Un arrosoir" style="max-width: 100%; max-height: 100%;">
+            </div>
+            <div class="caption">
+                Un arrosoir
+                <button class="play-button" onclick="document.getElementById('audio30').play()">▶️</button>
+            </div>
+            <audio id="audio30" controls style="display: none;">
+                <source src="assets/watering_can.mov" type="audio/mp4">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
 
-    
+        <!-- Flashcard 31: Des Pots de Fleurs -->
+        <div class="polaroid">
+            <div class="image-container">
+                <img src="assets/flower_pots.jpg" alt="Des pots de fleurs" style="max-width: 100%; max-height: 100%;">
+            </div>
+            <div class="caption">
+                Des pots de fleurs
+                <button class="play-button" onclick="document.getElementById('audio31').play()">▶️</button>
+            </div>
+            <audio id="audio31" controls style="display: none;">
+                <source src="assets/flower_pots.mov" type="audio/mp4">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        <!-- Flashcard 32: L’Air Frais -->
+        <div class="polaroid">
+            <div class="image-container">
+                <img src="assets/fresh_air.jpg" alt="L’air frais" style="max-width: 100%; max-height: 100%;">
+            </div>
+            <div class="caption">
+                L’air frais
+                <button class="play-button" onclick="document.getElementById('audio32').play()">▶️</button>
+            </div>
+            <audio id="audio32" controls style="display: none;">
+                <source src="assets/fresh_air.mov" type="audio/mp4">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        <!-- Flashcard 33: Une Ambiance Paisible -->
+        <div class="polaroid">
+            <div class="image-container">
+                <img src="assets/peaceful_atmosphere.jpg" alt="Une ambiance paisible"
+                    style="max-width: 100%; max-height: 100%;">
+            </div>
+            <div class="caption">
+                Une ambiance paisible
+                <button class="play-button" onclick="document.getElementById('audio33').play()">▶️</button>
+            </div>
+            <audio id="audio33" controls style="display: none;">
+                <source src="assets/peaceful_atmosphere.mov" type="audio/mp4">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+
+              <!-- Flashcard 34: La maison -->
+              <div class="polaroid">
+                <div class="image-container">
+                    <img src="assets/la-maison.jpg" alt="La maison"
+                        style="max-width: 100%; max-height: 100%;">
+                </div>
+                <div class="caption">
+                    La maison
+                    <button class="play-button" onclick="document.getElementById('audio34').play()">▶️</button>
+                </div>
+                <audio id="audio34" controls style="display: none;">
+                    <source src="assets/Audio/La-maison.mp3" type="audio/mp4">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+
+                     <!-- Flashcard 35: Une-plante-en-pot -->
+                     <div class="polaroid">
+                        <div class="image-container">
+                            <img src="assets/Une-plante-en-pot.jpg" alt="La maison"
+                                style="max-width: 100%; max-height: 100%;">
+                        </div>
+                        <div class="caption">
+                            Une plante en pot
+                            <button class="play-button" onclick="document.getElementById('audio35').play()">▶️</button>
+                        </div>
+                        <audio id="audio35" controls style="display: none;">
+                            <source src="assets/Audio/Une-plante-en-pot.mp3" type="audio/mp4">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+
+  
+
 
         <!-- Add more flashcards as needed -->
     </div>
@@ -784,17 +833,17 @@
                 }
             });
         }
-    
+
         function onPlayerReady(event) {
             console.log("YouTube Player is ready.");
         }
-    
+
         function onPlayerStateChange(event) {
             if (event.data === YT.PlayerState.PLAYING) {
                 syncTextWithVideo();
             }
         }
-    
+
         // Function to sync text with video
         function syncTextWithVideo() {
             const words = document.querySelectorAll('.translatable');
@@ -811,13 +860,13 @@
                 });
             }, 100); // Check every 100ms
         }
-    
+
         // Load YouTube IFrame API
         const tag = document.createElement('script');
         tag.src = "https://www.youtube.com/iframe_api";
         const firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-    
+
         // Add click functionality for mobile
         const translatableWords = document.querySelectorAll('.translatable');
         translatableWords.forEach(word => {
@@ -828,7 +877,7 @@
                 word.classList.toggle('active');
             });
         });
-    
+
         // Hide translation when clicking outside
         document.addEventListener('click', () => {
             translatableWords.forEach(word => {
@@ -837,4 +886,5 @@
         });
     </script>
 </body>
+
 </html>
