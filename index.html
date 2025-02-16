@@ -7,48 +7,88 @@
     <title>Flashcards - La Maison</title>
     <style>
         body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            margin: 0;
+            padding: 0;
             background-color: #f5f5f5;
             font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
             padding: 20px;
         }
 
+        /* Top Section: Video and Text */
         .top-section {
-            text-align: center;
-            margin-bottom: 40px;
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
         }
 
-        .top-section iframe {
-            max-width: 100%;
-            height: auto;
+        .video-container {
+            flex: 1;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 300px;
             border-radius: 10px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
         }
 
-        .top-section p {
-            font-size: 18px;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 20px auto;
-            text-align: left;
+        .text-container {
+            flex: 1;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            overflow-y: auto;
+            max-height: 300px;
         }
 
-        .flashcards-container {
+        .text-container p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* View Toggle Buttons */
+        .view-toggle {
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .view-toggle button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: #333;
+        }
+
+        /* Flashcards Container */
+        .flashcards-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Default: 3 flashcards per row */
             gap: 20px;
         }
 
+        .flashcards-container.list-view {
+            grid-template-columns: 1fr; /* List view: 1 flashcard per row */
+        }
+
+        /* Polaroid Flashcard */
         .polaroid {
             background: white;
             padding: 15px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
             text-align: center;
-            width: 200px;
-            transform: rotate(-3deg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .image-container {
@@ -68,6 +108,13 @@
             align-items: center;
             justify-content: center;
         }
+
+        .polaroid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 
         .play-button {
             margin-left: 10px;
@@ -117,718 +164,482 @@
         .translatable.active::after {
             opacity: 1;
         }
+
+        /* Responsive Design for Polaroids */
+        @media (max-width: 768px) {
+            .flashcards-container {
+                grid-template-columns: repeat(2, 1fr); /* 2 per row on tablets */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .flashcards-container {
+                grid-template-columns: 1fr; /* 1 per row on mobile */
+            }
+        }
     </style>
 </head>
 
 <body>
-    <!-- Top Section: Video and Paragraph -->
-    <div class="top-section">
-        <iframe id="youtube-video" width="560" height="315"
-            src="https://www.youtube.com/embed/Lq7WK6CDeTw?enablejsapi=1" frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
-        <p>
-            <span class="translatable" data-start="0.5" data-end="1.7" title="It was">C’était</span>
-            <span class="translatable" data-start="0.5" data-end="1.7" title="a">une</span>
-            <span class="translatable" data-start="0.5" data-end="1.7" title="day">journée</span>
-            <span class="translatable" data-start="0.5" data-end="1.7" title="quiet">tranquille</span>
-            <span class="translatable" data-start="0.5" data-end="1.7" title="at">à</span>
-            <span class="translatable" data-start="0.5" data-end="1.7" title="home">la maison</span>.
-
-            <span class="translatable" data-start="2.9" data-end="5.4" title="In">Dans</span>
-            <span class="translatable" data-start="2.9" data-end="5.4" title="the">le</span>
-            <span class="translatable" data-start="2.9" data-end="5.4" title="hallway">couloir</span>,
-            <span class="translatable" data-start="2.9" data-end="5.4" title="a">une</span>
-            <span class="translatable" data-start="2.9" data-end="5.4" title="pile">pile</span>
-            <span class="translatable" data-start="2.9" data-end="5.4" title="of">de</span>
-            <span class="translatable" data-start="2.9" data-end="5.4" title="letters">lettres</span>
-            <span class="translatable" data-start="2.9" data-end="5.4" title="was">était</span>
-            <span class="translatable" data-start="2.9" data-end="5.4" title="placed">posée</span>
-            <span class="translatable" data-start="2.9" data-end="5.4" title="on">sur</span>
-
-            <span class="translatable" data-start="5.4" data-end="8.0" title="the">la</span>
-            <span class="translatable" data-start="5.4" data-end="8.0" title="console">console</span>
-            <span class="translatable" data-start="5.4" data-end="8.0" title="just">juste</span>
-            <span class="translatable" data-start="5.4" data-end="8.0" title="next to">à côté</span>
-            <span class="translatable" data-start="5.4" data-end="8.0" title="a">d’un</span>
-            <span class="translatable" data-start="5.4" data-end="8.0" title="vase">vase</span>
-            <span class="translatable" data-start="5.4" data-end="8.0" title="filled">rempli</span>
-            <span class="translatable" data-start="5.4" data-end="8.0" title="with">de</span>
-            <span class="translatable" data-start="5.4" data-end="8.0" title="flowers">fleurs</span>.
-
-            <span class="translatable" data-start="9.0" data-end="11.2" title="The">Les</span>
-            <span class="translatable" data-start="9.0" data-end="11.2" title="keys">clés</span>
-            <span class="translatable" data-start="9.0" data-end="11.2" title="were">étaient</span>
-            <span class="translatable" data-start="9.0" data-end="11.2" title="hanging">suspendues</span>
-            <span class="translatable" data-start="9.0" data-end="11.2" title="on">à</span>
-            <span class="translatable" data-start="9.0" data-end="11.2" title="a">un</span>
-            <span class="translatable" data-start="9.0" data-end="11.2" title="hook">crochet</span>,
-
-            <span class="translatable" data-start="11.2" data-end="12.7" title="ready">prêtes</span>
-            <span class="translatable" data-start="11.2" data-end="12.7" title="to">à</span>
-            <span class="translatable" data-start="11.2" data-end="12.7" title="be">être</span>
-            <span class="translatable" data-start="11.2" data-end="12.7" title="grabbed">attrapées</span>
-            <span class="translatable" data-start="11.2" data-end="12.7" title="to">pour</span>
-            <span class="translatable" data-start="11.2" data-end="12.7" title="go out">sortir</span>.<br><br>
-
-            <span class="translatable" data-start="13.9" data-end="16.4" title="In">Dans</span>
-            <span class="translatable" data-start="13.9" data-end="16.4" title="the">le</span>
-            <span class="translatable" data-start="13.9" data-end="16.4" title="living room">salon</span>,
-            <span class="translatable" data-start="13.9" data-end="16.4" title="the">l’</span>
-            <span class="translatable" data-start="13.9" data-end="16.4" title="wall clock">horloge murale</span>
-            <span class="translatable" data-start="13.9" data-end="16.4" title="showed">indiquait</span>
-            <span class="translatable" data-start="13.9" data-end="16.4" title="noon">midi</span>
-
-            <span class="translatable" data-start="16.4" data-end="18.3" title="while">tandis</span>
-            <span class="translatable" data-start="16.4" data-end="18.3" title="that">qu’</span>
-            <span class="translatable" data-start="16.4" data-end="18.3" title="next to">à côté</span>,
-            <span class="translatable" data-start="16.4" data-end="18.3" title="the">la</span>
-            <span class="translatable" data-start="16.4" data-end="18.3" title="potted plant">plante en pot</span>
-
-            <span class="translatable" data-start="18.3" data-end="19.9" title="was">était</span>
-            <span class="translatable" data-start="18.3" data-end="19.9" title="bathed">baignée</span>
-            <span class="translatable" data-start="18.3" data-end="19.9" title="in">de</span>
-            <span class="translatable" data-start="18.3" data-end="19.9" title="natural light">lumière naturelle</span>.
-
-            <span class="translatable" data-start="21.0" data-end="23.8" title="On">Sur</span>
-            <span class="translatable" data-start="21.0" data-end="23.8" title="the">l’</span>
-            <span class="translatable" data-start="21.0" data-end="23.8" title="shelf">étagère</span>,
-            <span class="translatable" data-start="21.0" data-end="23.8" title="several">plusieurs</span>
-            <span class="translatable" data-start="21.0" data-end="23.8" title="souvenirs">souvenirs</span>
-            <span class="translatable" data-start="21.0" data-end="23.8" title="from">de</span>
-            <span class="translatable" data-start="21.0" data-end="23.8" title="vacations">vacances</span>
-            <span class="translatable" data-start="21.0" data-end="23.8" title="were">étaient</span>
-
-            <span class="translatable" data-start="23.8" data-end="26.0" title="arranged">disposés</span>
-            <span class="translatable" data-start="23.8" data-end="26.0" title="around">autour</span>
-            <span class="translatable" data-start="23.8" data-end="26.0" title="a">d’un</span>
-            <span class="translatable" data-start="23.8" data-end="26.0" title="family photo frame">cadre photo</span>
-            <span class="translatable" data-start="23.8" data-end="26.0" title="familial">familial</span>.
-
-            <span class="translatable" data-start="27.2" data-end="28.9" title="The">La</span>
-            <span class="translatable" data-start="27.2" data-end="28.9" title="waste bin">corbeille</span>
-            <span class="translatable" data-start="27.2" data-end="28.9" title="in">dans</span>
-            <span class="translatable" data-start="27.2" data-end="28.9" title="a">un</span>
-            <span class="translatable" data-start="27.2" data-end="28.9" title="corner">coin</span>
-            <span class="translatable" data-start="27.2" data-end="28.9" title="contained">contenait</span>
-
-            <span class="translatable" data-start="28.9" data-end="30.8" title="a few">quelques</span>
-            <span class="translatable" data-start="28.9" data-end="30.8" title="magazines">magazines</span>
-            <span class="translatable" data-start="28.9" data-end="30.8" title="and">et</span>
-            <span class="translatable" data-start="28.9" data-end="30.8" title="newspapers">journaux</span>
-            <span class="translatable" data-start="28.9" data-end="30.8" title="to">à</span>
-            <span class="translatable" data-start="28.9" data-end="30.8" title="recycle">recycler</span>.<br><br>
-
-            <span class="translatable" data-start="31.9" data-end="34.2" title="In">Dans</span>
-            <span class="translatable" data-start="31.9" data-end="34.2" title="the">le</span>
-            <span class="translatable" data-start="31.9" data-end="34.2" title="office">bureau</span>,
-            <span class="translatable" data-start="31.9" data-end="34.2" title="the">la</span>
-            <span class="translatable" data-start="31.9" data-end="34.2" title="desk lamp">lampe de bureau</span>
-            <span class="translatable" data-start="31.9" data-end="34.2" title="softly">éclairait doucement</span>
-            <span class="translatable" data-start="34.2" data-end="36.5" title="a">un</span>
-            <span class="translatable" data-start="34.2" data-end="36.5" title="stack">tas</span>
-            <span class="translatable" data-start="34.2" data-end="36.5" title="of">de</span>
-            <span class="translatable" data-start="34.2" data-end="36.5" title="important papers">papiers
-                importants</span>,
-
-            <span class="translatable" data-start="36.5" data-end="39.2" title="and">et</span>
-            <span class="translatable" data-start="36.5" data-end="39.2" title="the">le</span>
-            <span class="translatable" data-start="36.5" data-end="39.2" title="soft rug">tapis moelleux</span>
-            <span class="translatable" data-start="36.5" data-end="39.2" title="made">rendait</span>
-            <span class="translatable" data-start="36.5" data-end="39.2" title="the">l’</span>
-            <span class="translatable" data-start="36.5" data-end="39.2" title="place">endroit</span>
-            <span class="translatable" data-start="36.5" data-end="39.2" title="comfortable">confortable</span>
-            <span class="translatable" data-start="36.5" data-end="39.2" title="for">pour</span>
-            <span class="translatable" data-start="36.5" data-end="39.2" title="working">travailler</span>.
-
-            <span class="translatable" data-start="40.2" data-end="42.7" title="In">Au</span>
-            <span class="translatable" data-start="40.2" data-end="42.7" title="the center">centre</span>,
-            <span class="translatable" data-start="40.2" data-end="42.7" title="the">la</span>
-            <span class="translatable" data-start="40.2" data-end="42.7" title="swivel chair">chaise pivotante</span>
-            <span class="translatable" data-start="40.2" data-end="42.7" title="was">était</span>
-            <span class="translatable" data-start="40.2" data-end="42.7" title="adjusted">ajustée</span>
-            <span class="translatable" data-start="40.2" data-end="42.7" title="perfectly">parfaitement</span>
-
-            <span class="translatable" data-start="42.7" data-end="45.4" title="ready">prête</span>
-            <span class="translatable" data-start="42.7" data-end="45.4" title="for">pour</span>
-            <span class="translatable" data-start="42.7" data-end="45.4" title="a">une</span>
-            <span class="translatable" data-start="42.7" data-end="45.4" title="new">nouvelle</span>
-            <span class="translatable" data-start="42.7" data-end="45.4" title="day">journée</span>
-            <span class="translatable" data-start="42.7" data-end="45.4" title="productive">productive</span>.<br><br>
-
-            <span class="translatable" data-start="46.4" data-end="48.9" title="Finally">Enfin</span>,
-            <span class="translatable" data-start="46.4" data-end="48.9" title="the">le</span>
-            <span class="translatable" data-start="46.4" data-end="48.9" title="balcony">balcon</span>
-            <span class="translatable" data-start="46.4" data-end="48.9" title="was">était</span>
-            <span class="translatable" data-start="46.4" data-end="48.9" title="a">un</span>
-            <span class="translatable" data-start="46.4" data-end="48.9" title="haven">havre</span>
-            <span class="translatable" data-start="46.4" data-end="48.9" title="of">de</span>
-            <span class="translatable" data-start="46.4" data-end="48.9" title="peace">paix</span>
-            <span class="translatable" data-start="46.4" data-end="48.9" title="with">avec</span>
-
-            <span class="translatable" data-start="48.9" data-end="52.2" title="a">une</span>
-            <span class="translatable" data-start="48.9" data-end="52.2" title="small">petite</span>
-            <span class="translatable" data-start="48.9" data-end="52.2" title="table">table</span>,
-            <span class="translatable" data-start="48.9" data-end="52.2" title="folding chairs">des chaises
-                pliantes</span>,
-            <span class="translatable" data-start="48.9" data-end="52.2" title="and">et</span>
-            <span class="translatable" data-start="48.9" data-end="52.2" title="a">un</span>
-            <span class="translatable" data-start="48.9" data-end="52.2" title="watering can">arrosoir</span>
-            <span class="translatable" data-start="48.9" data-end="52.2" title="placed">posé</span>
-
-            <span class="translatable" data-start="52.2" data-end="53.9" title="near">près</span>
-            <span class="translatable" data-start="52.2" data-end="53.9" title="the">des</span>
-            <span class="translatable" data-start="52.2" data-end="53.9" title="well-maintained">bien entretenus</span>.
-
-            <span class="translatable" data-start="54.9" data-end="56.9" title="The">L’</span>
-            <span class="translatable" data-start="54.9" data-end="56.9" title="fresh air">air frais</span>
-            <span class="translatable" data-start="54.9" data-end="56.9" title="brought">apportait</span>
-            <span class="translatable" data-start="54.9" data-end="56.9" title="a">une</span>
-            <span class="translatable" data-start="54.9" data-end="56.9" title="atmosphere">ambiance</span>
-            <span class="translatable" data-start="54.9" data-end="56.9" title="peaceful">paisible</span>
-
-
-            <span class="translatable" data-start="56.9" data-end="58.1" title="to">à</span>
-            <span class="translatable" data-start="56.9" data-end="58.1" title="this">cette</span>
-            <span class="translatable" data-start="56.9" data-end="58.1" title="home">maison</span>
-            <span class="translatable" data-start="56.9" data-end="58.1" title="lively">bien vivante</span>.
-
-        </p>
-    </div>
-
-    <!-- Flashcards Section -->
-    <div class="flashcards-container">
-        <!-- Flashcard 1: Le Coussin -->
-        <div class="polaroid">
-            <div class="image-container">
-                <img src="assets/Untitled design (2).jpg" alt="Le coussin" style="max-width: 100%; max-height: 100%;">
+    <div class="container">
+        <!-- Top Section: Video and Text -->
+        <div class="top-section">
+            <!-- Video on the left -->
+            <div class="video-container">
+                <iframe id="youtube-video" width="100%" height="300"
+                    src="https://www.youtube.com/embed/Lq7WK6CDeTw?enablejsapi=1" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
             </div>
-            <div class="caption">
-                Le coussin
-                <button class="play-button" onclick="document.getElementById('audio1').play()">▶️</button>
+
+            <!-- Text on the right -->
+            <div class="text-container">
+                <p>
+                    <span class="translatable" data-start="0.5" data-end="1.7" title="It was">C’était</span>
+                    <span class="translatable" data-start="0.5" data-end="1.7" title="a">une</span>
+                    <span class="translatable" data-start="0.5" data-end="1.7" title="day">journée</span>
+                    <span class="translatable" data-start="0.5" data-end="1.7" title="quiet">tranquille</span>
+                    <span class="translatable" data-start="0.5" data-end="1.7" title="at">à</span>
+                    <span class="translatable" data-start="0.5" data-end="1.7" title="home">la maison</span>.
+
+                    <span class="translatable" data-start="2.9" data-end="5.4" title="In">Dans</span>
+                    <span class="translatable" data-start="2.9" data-end="5.4" title="the">le</span>
+                    <span class="translatable" data-start="2.9" data-end="5.4" title="hallway">couloir</span>,
+                    <span class="translatable" data-start="2.9" data-end="5.4" title="a">une</span>
+                    <span class="translatable" data-start="2.9" data-end="5.4" title="pile">pile</span>
+                    <span class="translatable" data-start="2.9" data-end="5.4" title="of">de</span>
+                    <span class="translatable" data-start="2.9" data-end="5.4" title="letters">lettres</span>
+                    <span class="translatable" data-start="2.9" data-end="5.4" title="was">était</span>
+                    <span class="translatable" data-start="2.9" data-end="5.4" title="placed">posée</span>
+                    <span class="translatable" data-start="2.9" data-end="5.4" title="on">sur</span>
+
+                    <span class="translatable" data-start="5.4" data-end="8.0" title="the">la</span>
+                    <span class="translatable" data-start="5.4" data-end="8.0" title="console">console</span>
+                    <span class="translatable" data-start="5.4" data-end="8.0" title="just">juste</span>
+                    <span class="translatable" data-start="5.4" data-end="8.0" title="next to">à côté</span>
+                    <span class="translatable" data-start="5.4" data-end="8.0" title="a">d’un</span>
+                    <span class="translatable" data-start="5.4" data-end="8.0" title="vase">vase</span>
+                    <span class="translatable" data-start="5.4" data-end="8.0" title="filled">rempli</span>
+                    <span class="translatable" data-start="5.4" data-end="8.0" title="with">de</span>
+                    <span class="translatable" data-start="5.4" data-end="8.0" title="flowers">fleurs</span>.
+
+                    <span class="translatable" data-start="9.0" data-end="11.2" title="The">Les</span>
+                    <span class="translatable" data-start="9.0" data-end="11.2" title="keys">clés</span>
+                    <span class="translatable" data-start="9.0" data-end="11.2" title="were">étaient</span>
+                    <span class="translatable" data-start="9.0" data-end="11.2" title="hanging">suspendues</span>
+                    <span class="translatable" data-start="9.0" data-end="11.2" title="on">à</span>
+                    <span class="translatable" data-start="9.0" data-end="11.2" title="a">un</span>
+                    <span class="translatable" data-start="9.0" data-end="11.2" title="hook">crochet</span>,
+
+                    <span class="translatable" data-start="11.2" data-end="12.7" title="ready">prêtes</span>
+                    <span class="translatable" data-start="11.2" data-end="12.7" title="to">à</span>
+                    <span class="translatable" data-start="11.2" data-end="12.7" title="be">être</span>
+                    <span class="translatable" data-start="11.2" data-end="12.7" title="grabbed">attrapées</span>
+                    <span class="translatable" data-start="11.2" data-end="12.7" title="to">pour</span>
+                    <span class="translatable" data-start="11.2" data-end="12.7" title="go out">sortir</span>.<br><br>
+
+                    <span class="translatable" data-start="13.9" data-end="16.4" title="In">Dans</span>
+                    <span class="translatable" data-start="13.9" data-end="16.4" title="the">le</span>
+                    <span class="translatable" data-start="13.9" data-end="16.4" title="living room">salon</span>,
+                    <span class="translatable" data-start="13.9" data-end="16.4" title="the">l’</span>
+                    <span class="translatable" data-start="13.9" data-end="16.4" title="wall clock">horloge murale</span>
+                    <span class="translatable" data-start="13.9" data-end="16.4" title="showed">indiquait</span>
+                    <span class="translatable" data-start="13.9" data-end="16.4" title="noon">midi</span>
+
+                    <span class="translatable" data-start="16.4" data-end="18.3" title="while">tandis</span>
+                    <span class="translatable" data-start="16.4" data-end="18.3" title="that">qu’</span>
+                    <span class="translatable" data-start="16.4" data-end="18.3" title="next to">à côté</span>,
+                    <span class="translatable" data-start="16.4" data-end="18.3" title="the">la</span>
+                    <span class="translatable" data-start="16.4" data-end="18.3" title="potted plant">plante en pot</span>
+
+                    <span class="translatable" data-start="18.3" data-end="19.9" title="was">était</span>
+                    <span class="translatable" data-start="18.3" data-end="19.9" title="bathed">baignée</span>
+                    <span class="translatable" data-start="18.3" data-end="19.9" title="in">de</span>
+                    <span class="translatable" data-start="18.3" data-end="19.9" title="natural light">lumière naturelle</span>.
+
+                    <span class="translatable" data-start="21.0" data-end="23.8" title="On">Sur</span>
+                    <span class="translatable" data-start="21.0" data-end="23.8" title="the">l’</span>
+                    <span class="translatable" data-start="21.0" data-end="23.8" title="shelf">étagère</span>,
+                    <span class="translatable" data-start="21.0" data-end="23.8" title="several">plusieurs</span>
+                    <span class="translatable" data-start="21.0" data-end="23.8" title="souvenirs">souvenirs</span>
+                    <span class="translatable" data-start="21.0" data-end="23.8" title="from">de</span>
+                    <span class="translatable" data-start="21.0" data-end="23.8" title="vacations">vacances</span>
+                    <span class="translatable" data-start="21.0" data-end="23.8" title="were">étaient</span>
+
+                    <span class="translatable" data-start="23.8" data-end="26.0" title="arranged">disposés</span>
+                    <span class="translatable" data-start="23.8" data-end="26.0" title="around">autour</span>
+                    <span class="translatable" data-start="23.8" data-end="26.0" title="a">d’un</span>
+                    <span class="translatable" data-start="23.8" data-end="26.0" title="family photo frame">cadre photo</span>
+                    <span class="translatable" data-start="23.8" data-end="26.0" title="familial">familial</span>.
+
+                    <span class="translatable" data-start="27.2" data-end="28.9" title="The">La</span>
+                    <span class="translatable" data-start="27.2" data-end="28.9" title="waste bin">corbeille</span>
+                    <span class="translatable" data-start="27.2" data-end="28.9" title="in">dans</span>
+                    <span class="translatable" data-start="27.2" data-end="28.9" title="a">un</span>
+                    <span class="translatable" data-start="27.2" data-end="28.9" title="corner">coin</span>
+                    <span class="translatable" data-start="27.2" data-end="28.9" title="contained">contenait</span>
+
+                    <span class="translatable" data-start="28.9" data-end="30.8" title="a few">quelques</span>
+                    <span class="translatable" data-start="28.9" data-end="30.8" title="magazines">magazines</span>
+                    <span class="translatable" data-start="28.9" data-end="30.8" title="and">et</span>
+                    <span class="translatable" data-start="28.9" data-end="30.8" title="newspapers">journaux</span>
+                    <span class="translatable" data-start="28.9" data-end="30.8" title="to">à</span>
+                    <span class="translatable" data-start="28.9" data-end="30.8" title="recycle">recycler</span>.<br><br>
+
+                    <span class="translatable" data-start="31.9" data-end="34.2" title="In">Dans</span>
+                    <span class="translatable" data-start="31.9" data-end="34.2" title="the">le</span>
+                    <span class="translatable" data-start="31.9" data-end="34.2" title="office">bureau</span>,
+                    <span class="translatable" data-start="31.9" data-end="34.2" title="the">la</span>
+                    <span class="translatable" data-start="31.9" data-end="34.2" title="desk lamp">lampe de bureau</span>
+                    <span class="translatable" data-start="31.9" data-end="34.2" title="softly">éclairait doucement</span>
+                    <span class="translatable" data-start="34.2" data-end="36.5" title="a">un</span>
+                    <span class="translatable" data-start="34.2" data-end="36.5" title="stack">tas</span>
+                    <span class="translatable" data-start="34.2" data-end="36.5" title="of">de</span>
+                    <span class="translatable" data-start="34.2" data-end="36.5" title="important papers">papiers
+                        importants</span>,
+
+                    <span class="translatable" data-start="36.5" data-end="39.2" title="and">et</span>
+                    <span class="translatable" data-start="36.5" data-end="39.2" title="the">le</span>
+                    <span class="translatable" data-start="36.5" data-end="39.2" title="soft rug">tapis moelleux</span>
+                    <span class="translatable" data-start="36.5" data-end="39.2" title="made">rendait</span>
+                    <span class="translatable" data-start="36.5" data-end="39.2" title="the">l’</span>
+                    <span class="translatable" data-start="36.5" data-end="39.2" title="place">endroit</span>
+                    <span class="translatable" data-start="36.5" data-end="39.2" title="comfortable">confortable</span>
+                    <span class="translatable" data-start="36.5" data-end="39.2" title="for">pour</span>
+                    <span class="translatable" data-start="36.5" data-end="39.2" title="working">travailler</span>.
+
+                    <span class="translatable" data-start="40.2" data-end="42.7" title="In">Au</span>
+                    <span class="translatable" data-start="40.2" data-end="42.7" title="the center">centre</span>,
+                    <span class="translatable" data-start="40.2" data-end="42.7" title="the">la</span>
+                    <span class="translatable" data-start="40.2" data-end="42.7" title="swivel chair">chaise pivotante</span>
+                    <span class="translatable" data-start="40.2" data-end="42.7" title="was">était</span>
+                    <span class="translatable" data-start="40.2" data-end="42.7" title="adjusted">ajustée</span>
+                    <span class="translatable" data-start="40.2" data-end="42.7" title="perfectly">parfaitement</span>
+
+                    <span class="translatable" data-start="42.7" data-end="45.4" title="ready">prête</span>
+                    <span class="translatable" data-start="42.7" data-end="45.4" title="for">pour</span>
+                    <span class="translatable" data-start="42.7" data-end="45.4" title="a">une</span>
+                    <span class="translatable" data-start="42.7" data-end="45.4" title="new">nouvelle</span>
+                    <span class="translatable" data-start="42.7" data-end="45.4" title="day">journée</span>
+                    <span class="translatable" data-start="42.7" data-end="45.4" title="productive">productive</span>.<br><br>
+
+                    <span class="translatable" data-start="46.4" data-end="48.9" title="Finally">Enfin</span>,
+                    <span class="translatable" data-start="46.4" data-end="48.9" title="the">le</span>
+                    <span class="translatable" data-start="46.4" data-end="48.9" title="balcony">balcon</span>
+                    <span class="translatable" data-start="46.4" data-end="48.9" title="was">était</span>
+                    <span class="translatable" data-start="46.4" data-end="48.9" title="a">un</span>
+                    <span class="translatable" data-start="46.4" data-end="48.9" title="haven">havre</span>
+                    <span class="translatable" data-start="46.4" data-end="48.9" title="of">de</span>
+                    <span class="translatable" data-start="46.4" data-end="48.9" title="peace">paix</span>
+                    <span class="translatable" data-start="46.4" data-end="48.9" title="with">avec</span>
+
+                    <span class="translatable" data-start="48.9" data-end="52.2" title="a">une</span>
+                    <span class="translatable" data-start="48.9" data-end="52.2" title="small">petite</span>
+                    <span class="translatable" data-start="48.9" data-end="52.2" title="table">table</span>,
+                    <span class="translatable" data-start="48.9" data-end="52.2" title="folding chairs">des chaises
+                        pliantes</span>,
+                    <span class="translatable" data-start="48.9" data-end="52.2" title="and">et</span>
+                    <span class="translatable" data-start="48.9" data-end="52.2" title="a">un</span>
+                    <span class="translatable" data-start="48.9" data-end="52.2" title="watering can">arrosoir</span>
+                    <span class="translatable" data-start="48.9" data-end="52.2" title="placed">posé</span>
+
+                    <span class="translatable" data-start="52.2" data-end="53.9" title="near">près</span>
+                    <span class="translatable" data-start="52.2" data-end="53.9" title="the">des</span>
+                    <span class="translatable" data-start="52.2" data-end="53.9" title="well-maintained">bien entretenus</span>.
+
+                    <span class="translatable" data-start="54.9" data-end="56.9" title="The">L’</span>
+                    <span class="translatable" data-start="54.9" data-end="56.9" title="fresh air">air frais</span>
+                    <span class="translatable" data-start="54.9" data-end="56.9" title="brought">apportait</span>
+                    <span class="translatable" data-start="54.9" data-end="56.9" title="a">une</span>
+                    <span class="translatable" data-start="54.9" data-end="56.9" title="atmosphere">ambiance</span>
+                    <span class="translatable" data-start="54.9" data-end="56.9" title="peaceful">paisible</span>
+
+                    <span class="translatable" data-start="56.9" data-end="58.1" title="to">à</span>
+                    <span class="translatable" data-start="56.9" data-end="58.1" title="this">cette</span>
+                    <span class="translatable" data-start="56.9" data-end="58.1" title="home">maison</span>
+                    <span class="translatable" data-start="56.9" data-end="58.1" title="lively">bien vivante</span>.
+                </p>
             </div>
-            <audio id="audio1" controls style="display: none;">
-                <source src="assets/Audio/Le-coussin.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
         </div>
 
-        <!-- Flashcard 1: Tranquille Journée -->
-        <div class="polaroid">
-            <div class="image-container">
-                <img src="assets/journee-tranquille.png" alt="Journée tranquille"
-                    style="max-width: 100%; max-height: 100%;">
-            </div>
-            <div class="caption">
-                Journée tranquille
-                <button class="play-button" onclick="document.getElementById('audio2').play()">▶️</button>
-            </div>
-            <audio id="audio2" controls style="display: none;">
-                <source src="assets/Audio/journee-tranquille.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
+        <!-- View Toggle Icons -->
+        <div class="view-toggle">
+            <button onclick="toggleView('grid')">&#9634; Grid View</button>
+            <button onclick="toggleView('list')">&#9776; List View</button>
         </div>
 
-
-        <!-- Flashcard 3: Dans le Couloir -->
-        <div class="polaroid">
-            <div class="image-container">
-                <img src="assets/Dans-le-couloir.png" alt="Dans le couloir" style="max-width: 100%; max-height: 100%;">
-            </div>
-            <div class="caption">
-                Dans le couloir
-                <button class="play-button" onclick="document.getElementById('audio3').play()">▶️</button>
-            </div>
-            <audio id="audio3" controls style="display: none;">
-                <source src="assets/Audio/Dans-le-couloir.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-
-        <!-- Flashcard 4: Une Pile de Lettres -->
-        <div class="polaroid">
-            <div class="image-container">
-                <img src="assets/Une-pile-de-lettres.jpg" alt="Une pile de lettres"
-                    style="max-width: 100%; max-height: 100%;">
-            </div>
-            <div class="caption">
-                Une pile de lettres
-                <button class="play-button" onclick="document.getElementById('audio4').play()">▶️</button>
-            </div>
-            <audio id="audio4" controls style="display: none;">
-                <source src="assets/Audio/Une-pile-de-lettres.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-
-        <!-- Flashcard 5: La Console -->
-        <div class="polaroid">
-            <div class="image-container">
-                <img src="assets/La-console.jpg" alt="La console" style="max-width: 100%; max-height: 100%;">
-            </div>
-            <div class="caption">
-                La console
-                <button class="play-button" onclick="document.getElementById('audio5').play()">▶️</button>
-            </div>
-            <audio id="audio5" controls style="display: none;">
-                <source src="assets/Audio/La-console.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-
-        <!-- Flashcard 6: Un Vase Rempli de Fleurs -->
-        <div class="polaroid">
-            <div class="image-container">
-                <img src="assets/Un-vase-rempli-de-fleurs.jpg" alt="Un vase rempli de fleurs"
-                    style="max-width: 100%; max-height: 100%;">
-            </div>
-            <div class="caption">
-                Un vase rempli de fleurs
-                <button class="play-button" onclick="document.getElementById('audio6').play()">▶️</button>
-            </div>
-            <audio id="audio6" controls style="display: none;">
-                <source src="assets/Audio/Un-vase-rempli-de-fl.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-
-        <!-- Flashcard 7: Les Clés -->
-        <div class="polaroid">
-            <div class="image-container">
-                <img src="assets/Les-cles.jpg" alt="Les clés" style="max-width: 100%; max-height: 100%;">
-            </div>
-            <div class="caption">
-                Les clés
-                <button class="play-button" onclick="document.getElementById('audio7').play()">▶️</button>
-            </div>
-            <audio id="audio7" controls style="display: none;">
-                <source src="assets/Audio/Les-cles.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-        <!-- Flashcard 8: Suspendues à un Crochet -->
-        <div class="polaroid">
-            <div class="image-container">
-                <img src="assets/Suspendues-a-un-crochet.jpg" alt="Suspendues à un crochet"
-                    style="max-width: 100%; max-height: 100%;">
-            </div>
-            <div class="caption">
-                Suspendues à un crochet
-                <button class="play-button" onclick="document.getElementById('audio8').play()">▶️</button>
-            </div>
-            <audio id="audio8" controls style="display: none;">
-                <source src="assets/Audio/Suspendues-a-un-croc.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-        <!-- Flashcard 9: Le Salon -->
-        <div class="polaroid">
-            <div class="image-container">
-                <img src="assets/Le-salon.jpg" alt="Le salon" style="max-width: 100%; max-height: 100%;">
-            </div>
-            <div class="caption">
-                Le salon
-                <button class="play-button" onclick="document.getElementById('audio9').play()">▶️</button>
-            </div>
-            <audio id="audio9" controls style="display: none;">
-                <source src="assets/Audio/Le-salon.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-        <!-- Flashcard 10: L’Horloge Murale -->
-        <div class="polaroid">
-            <div class="image-container">
-                <img src="assets/L-horloge-murale.jpg" alt="L’horloge murale" style="max-width: 100%; max-height: 100%;">
-            </div>
-            <div class="caption">
-                L’horloge murale
-                <button class="play-button" onclick="document.getElementById('audio10').play()">▶️</button>
-            </div>
-            <audio id="audio10" controls style="display: none;">
-                <source src="assets/Audio/L-horloge murale.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-        <!-- Flashcard 11: Midi -->
-        <div class="polaroid">
-            <div class="image-container">
-                <img src="assets/Midi.jpg" alt="Midi" style="max-width: 100%; max-height: 100%;">
-            </div>
-            <div class="caption">
-                Midi
-                <button class="play-button" onclick="document.getElementById('audio11').play()">▶️</button>
-            </div>
-            <audio id="audio11" controls style="display: none;">
-                <source src="assets/Audio/Midi.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-        <!-- Flashcard 12: Une Plante en Pot -->
-        <div class="polaroid">
-            <div class="image-container">
-                <img src="assets/Une-plante-en-pot.jpg" alt="Une plante en pot" style="max-width: 100%; max-height: 100%;">
-            </div>
-            <div class="caption">
-                Une plante en pot
-                <button class="play-button" onclick="document.getElementById('audio12').play()">▶️</button>
-            </div>
-            <audio id="audio12" controls style="display: none;">
-                <source src="assets/Audio/Une-plante-en-pot.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-
-        <!-- Flashcard 13: Baignée de Lumière Naturelle -->
-        <div class="polaroid">
-            <div class="image-container">
-                <img src="assets/Baignee-de-lumiere-naturelle.jpg" alt="Baignée de lumière naturelle"
-                    style="max-width: 100%; max-height: 100%;">
-            </div>
-            <div class="caption">
-                Baignée de lumière naturelle
-                <button class="play-button" onclick="document.getElementById('audio13').play()">▶️</button>
-            </div>
-            <audio id="audio13" controls style="display: none;">
-                <source src="assets/Audio/Baignee-de lumiere-n.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-        <!-- Flashcard 14: L’Étagère -->
-        <div class="polaroid">
-            <div class="image-container">
-                <img src="assets/L-etagere.jpg" alt="L’étagère" style="max-width: 100%; max-height: 100%;">
-            </div>
-            <div class="caption">
-                L’étagère
-                <button class="play-button" onclick="document.getElementById('audio14').play()">▶️</button>
-            </div>
-            <audio id="audio14" controls style="display: none;">
-                <source src="assets/Audio/L-etagere.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-        <!-- Flashcard 15: Souvenirs de Vacances -->
-        <div class="polaroid">
-            <div class="image-container">
-                <img src="assets/Souvenirs-de-vacances.jpg" alt="Souvenirs de vacances"
-                    style="max-width: 100%; max-height: 100%;">
-            </div>
-            <div class="caption">
-                Souvenirs de vacances
-                <button class="play-button" onclick="document.getElementById('audio15').play()">▶️</button>
-            </div>
-            <audio id="audio15" controls style="display: none;">
-                <source src="assets/Audio/Souvenirs-de-vacance.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-        <!-- Flashcard 16: Un Cadre Photo Familial -->
-        <div class="polaroid">
-            <div class="image-container">
-                <img src="assets/Un-cadre-photo-familial.jpg" alt="Un cadre photo familial"
-                    style="max-width: 100%; max-height: 100%;">
-            </div>
-            <div class="caption">
-                Un cadre photo familial
-                <button class="play-button" onclick="document.getElementById('audio16').play()">▶️</button>
-            </div>
-            <audio id="audio16" controls style="display: none;">
-                <source src="assets/Audio/Un-cadre-photo-famil.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-        <!-- Flashcard 17: La Corbeille -->
-        <div class="polaroid">
-            <div class="image-container">
-                <img src="assets/La-corbeille.jpg" alt="La corbeille" style="max-width: 100%; max-height: 100%;">
-            </div>
-            <div class="caption">
-                La corbeille
-                <button class="play-button" onclick="document.getElementById('audio17').play()">▶️</button>
-            </div>
-            <audio id="audio17" controls style="display: none;">
-                <source src="assets/Audio/La-corbeille.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-        <!-- Flashcard 18: Magazines et Journaux -->
-        <div class="polaroid">
-            <div class="image-container">
-                <img src="assets/Magazines-et-journaux.jpg" alt="Magazines et journaux"
-                    style="max-width: 100%; max-height: 100%;">
-            </div>
-            <div class="caption">
-                Magazines et journaux
-                <button class="play-button" onclick="document.getElementById('audio18').play()">▶️</button>
-            </div>
-            <audio id="audio18" controls style="display: none;">
-                <source src="assets/Audio/Magazines-et-journau.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-
-
-
-
-
-
-
-
-
-
-        <!-- Flashcard 19: Recycler -->
-        <div class="polaroid">
-            <div class="image-container">
-                <img src="assets/recycle.jpg" alt="Recycler" style="max-width: 100%; max-height: 100%;">
-            </div>
-            <div class="caption">
-                Recycler
-                <button class="play-button" onclick="document.getElementById('audio19').play()">▶️</button>
-            </div>
-            <audio id="audio19" controls style="display: none;">
-                <source src="assets/recycle.mov" type="audio/mp4">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-        <!-- Flashcard 20: Le Bureau -->
-        <div class="polaroid">
-            <div class="image-container">
-                <img src="assets/office.jpg" alt="Le bureau" style="max-width: 100%; max-height: 100%;">
-            </div>
-            <div class="caption">
-                Le bureau
-                <button class="play-button" onclick="document.getElementById('audio20').play()">▶️</button>
-            </div>
-            <audio id="audio20" controls style="display: none;">
-                <source src="assets/office.mov" type="audio/mp4">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-        <!-- Flashcard 21: La Lampe de Bureau -->
-        <div class="polaroid">
-            <div class="image-container">
-                <img src="assets/office_lamp.jpg" alt="La lampe de bureau" style="max-width: 100%; max-height: 100%;">
-            </div>
-            <div class="caption">
-                La lampe de bureau
-                <button class="play-button" onclick="document.getElementById('audio21').play()">▶️</button>
-            </div>
-            <audio id="audio21" controls style="display: none;">
-                <source src="assets/office_lamp.mov" type="audio/mp4">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-        <!-- Flashcard 22: Un Tas de Papiers Importants -->
-        <div class="polaroid">
-            <div class="image-container">
-                <img src="assets/stack_of_important_papers.jpg" alt="Un tas de papiers importants"
-                    style="max-width: 100%; max-height: 100%;">
-            </div>
-            <div class="caption">
-                Un tas de papiers importants
-                <button class="play-button" onclick="document.getElementById('audio22').play()">▶️</button>
-            </div>
-            <audio id="audio22" controls style="display: none;">
-                <source src="assets/stack_of_important_papers.mov" type="audio/mp4">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-        <!-- Flashcard 23: Le Tapis Moelleux -->
-        <div class="polaroid">
-            <div class="image-container">
-                <img src="assets/plush_carpet.jpg" alt="Le tapis moelleux" style="max-width: 100%; max-height: 100%;">
-            </div>
-            <div class="caption">
-                Le tapis moelleux
-                <button class="play-button" onclick="document.getElementById('audio23').play()">▶️</button>
-            </div>
-            <audio id="audio23" controls style="display: none;">
-                <source src="assets/plush_carpet.mov" type="audio/mp4">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-        <!-- Flashcard 24: La Chaise Pivotante -->
-        <div class="polaroid">
-            <div class="image-container">
-                <img src="assets/swivel_chair.jpg" alt="La chaise pivotante" style="max-width: 100%; max-height: 100%;">
-            </div>
-            <div class="caption">
-                La chaise pivotante
-                <button class="play-button" onclick="document.getElementById('audio24').play()">▶️</button>
-            </div>
-            <audio id="audio24" controls style="display: none;">
-                <source src="assets/swivel_chair.mov" type="audio/mp4">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-
-        <!-- Flashcard 25: Une Journée Productive -->
-        <div class="polaroid">
-            <div class="image-container">
-                <img src="assets/productive_day.jpg" alt="Une journée productive"
-                    style="max-width: 100%; max-height: 100%;">
-            </div>
-            <div class="caption">
-                Une journée productive
-                <button class="play-button" onclick="document.getElementById('audio25').play()">▶️</button>
-            </div>
-            <audio id="audio25" controls style="display: none;">
-                <source src="assets/productive_day.mov" type="audio/mp4">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-        <!-- Flashcard 26: Le Balcon -->
-        <div class="polaroid">
-            <div class="image-container">
-                <img src="assets/balcony.jpg" alt="Le balcon" style="max-width: 100%; max-height: 100%;">
-            </div>
-            <div class="caption">
-                Le balcon
-                <button class="play-button" onclick="document.getElementById('audio26').play()">▶️</button>
-            </div>
-            <audio id="audio26" controls style="display: none;">
-                <source src="assets/balcony.mov" type="audio/mp4">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-        <!-- Flashcard 27: Un Havre de Paix -->
-        <div class="polaroid">
-            <div class="image-container">
-                <img src="assets/haven_of_peace.jpg" alt="Un havre de paix" style="max-width: 100%; max-height: 100%;">
-            </div>
-            <div class="caption">
-                Un havre de paix
-                <button class="play-button" onclick="document.getElementById('audio27').play()">▶️</button>
-            </div>
-            <audio id="audio27" controls style="display: none;">
-                <source src="assets/haven_of_peace.mov" type="audio/mp4">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-        <!-- Flashcard 28: Une Petite Table -->
-        <div class="polaroid">
-            <div class="image-container">
-                <img src="assets/small_table.jpg" alt="Une petite table" style="max-width: 100%; max-height: 100%;">
-            </div>
-            <div class="caption">
-                Une petite table
-                <button class="play-button" onclick="document.getElementById('audio28').play()">▶️</button>
-            </div>
-            <audio id="audio28" controls style="display: none;">
-                <source src="assets/small_table.mov" type="audio/mp4">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-        <!-- Flashcard 29: Des Chaises Plantes -->
-        <div class="polaroid">
-            <div class="image-container">
-                <img src="assets/folding_chairs.jpg" alt="Des chaises pliantes"
-                    style="max-width: 100%; max-height: 100%;">
-            </div>
-            <div class="caption">
-                Des chaises pliantes
-                <button class="play-button" onclick="document.getElementById('audio29').play()">▶️</button>
-            </div>
-            <audio id="audio29" controls style="display: none;">
-                <source src="assets/folding_chairs.mov" type="audio/mp4">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-        <!-- Flashcard 30: Un Arrosoir -->
-        <div class="polaroid">
-            <div class="image-container">
-                <img src="assets/watering_can.jpg" alt="Un arrosoir" style="max-width: 100%; max-height: 100%;">
-            </div>
-            <div class="caption">
-                Un arrosoir
-                <button class="play-button" onclick="document.getElementById('audio30').play()">▶️</button>
-            </div>
-            <audio id="audio30" controls style="display: none;">
-                <source src="assets/watering_can.mov" type="audio/mp4">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-
-        <!-- Flashcard 31: Des Pots de Fleurs -->
-        <div class="polaroid">
-            <div class="image-container">
-                <img src="assets/flower_pots.jpg" alt="Des pots de fleurs" style="max-width: 100%; max-height: 100%;">
-            </div>
-            <div class="caption">
-                Des pots de fleurs
-                <button class="play-button" onclick="document.getElementById('audio31').play()">▶️</button>
-            </div>
-            <audio id="audio31" controls style="display: none;">
-                <source src="assets/flower_pots.mov" type="audio/mp4">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-        <!-- Flashcard 32: L’Air Frais -->
-        <div class="polaroid">
-            <div class="image-container">
-                <img src="assets/fresh_air.jpg" alt="L’air frais" style="max-width: 100%; max-height: 100%;">
-            </div>
-            <div class="caption">
-                L’air frais
-                <button class="play-button" onclick="document.getElementById('audio32').play()">▶️</button>
-            </div>
-            <audio id="audio32" controls style="display: none;">
-                <source src="assets/fresh_air.mov" type="audio/mp4">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-        <!-- Flashcard 33: Une Ambiance Paisible -->
-        <div class="polaroid">
-            <div class="image-container">
-                <img src="assets/peaceful_atmosphere.jpg" alt="Une ambiance paisible"
-                    style="max-width: 100%; max-height: 100%;">
-            </div>
-            <div class="caption">
-                Une ambiance paisible
-                <button class="play-button" onclick="document.getElementById('audio33').play()">▶️</button>
-            </div>
-            <audio id="audio33" controls style="display: none;">
-                <source src="assets/peaceful_atmosphere.mov" type="audio/mp4">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-
-              <!-- Flashcard 34: La maison -->
-              <div class="polaroid">
+        <!-- Flashcards Section -->
+        <div class="flashcards-container" id="flashcards-container">
+            <!-- Flashcard 1: Le Coussin -->
+            <div class="polaroid">
                 <div class="image-container">
-                    <img src="assets/la-maison.jpg" alt="La maison"
-                        style="max-width: 100%; max-height: 100%;">
+                    <img src="assets/Untitled design (2).jpg" alt="Le coussin" style="max-width: 100%; max-height: 100%;">
                 </div>
                 <div class="caption">
-                    La maison
-                    <button class="play-button" onclick="document.getElementById('audio34').play()">▶️</button>
+                    Le coussin
+                    <button class="play-button" onclick="document.getElementById('audio1').play()">▶️</button>
                 </div>
-                <audio id="audio34" controls style="display: none;">
-                    <source src="assets/Audio/La-maison.mp3" type="audio/mpeg">
+                <audio id="audio1" controls style="display: none;">
+                    <source src="assets/Audio/Le-coussin.mp3" type="audio/mpeg">
                     Your browser does not support the audio element.
                 </audio>
             </div>
 
-                     <!-- Flashcard 35: Une-plante-en-pot -->
-                     <div class="polaroid">
-                        <div class="image-container">
-                            <img src="assets/Une-plante-en-pot.jpg" alt="La maison"
-                                style="max-width: 100%; max-height: 100%;">
-                        </div>
-                        <div class="caption">
-                            Une plante en pot
-                            <button class="play-button" onclick="document.getElementById('audio35').play()">▶️</button>
-                        </div>
-                        <audio id="audio35" controls style="display: none;">
-                            <source src="assets/Audio/Une-plante-en-pot.mp3" type="audio/mpeg">
-                            Your browser does not support the audio element.
-                        </audio>
-                    </div>
+            <!-- Flashcard 2: Journée Tranquille -->
+            <div class="polaroid">
+                <div class="image-container">
+                    <img src="assets/journee-tranquille.png" alt="Journée tranquille" style="max-width: 100%; max-height: 100%;">
+                </div>
+                <div class="caption">
+                    Journée tranquille
+                    <button class="play-button" onclick="document.getElementById('audio2').play()">▶️</button>
+                </div>
+                <audio id="audio2" controls style="display: none;">
+                    <source src="assets/Audio/journee-tranquille.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
 
-  
+            <!-- Flashcard 3: Dans le Couloir -->
+            <div class="polaroid">
+                <div class="image-container">
+                    <img src="assets/Dans-le-couloir.png" alt="Dans le couloir" style="max-width: 100%; max-height: 100%;">
+                </div>
+                <div class="caption">
+                    Dans le couloir
+                    <button class="play-button" onclick="document.getElementById('audio3').play()">▶️</button>
+                </div>
+                <audio id="audio3" controls style="display: none;">
+                    <source src="assets/Audio/Dans-le-couloir.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
 
+            <!-- Flashcard 4: Une Pile de Lettres -->
+            <div class="polaroid">
+                <div class="image-container">
+                    <img src="assets/Une-pile-de-lettres.jpg" alt="Une pile de lettres" style="max-width: 100%; max-height: 100%;">
+                </div>
+                <div class="caption">
+                    Une pile de lettres
+                    <button class="play-button" onclick="document.getElementById('audio4').play()">▶️</button>
+                </div>
+                <audio id="audio4" controls style="display: none;">
+                    <source src="assets/Audio/Une-pile-de-lettres.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
 
-        <!-- Add more flashcards as needed -->
+            <!-- Flashcard 5: La Console -->
+            <div class="polaroid">
+                <div class="image-container">
+                    <img src="assets/La-console.jpg" alt="La console" style="max-width: 100%; max-height: 100%;">
+                </div>
+                <div class="caption">
+                    La console
+                    <button class="play-button" onclick="document.getElementById('audio5').play()">▶️</button>
+                </div>
+                <audio id="audio5" controls style="display: none;">
+                    <source src="assets/Audio/La-console.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+
+            <!-- Flashcard 6: Un Vase Rempli de Fleurs -->
+            <div class="polaroid">
+                <div class="image-container">
+                    <img src="assets/Un-vase-rempli-de-fleurs.jpg" alt="Un vase rempli de fleurs" style="max-width: 100%; max-height: 100%;">
+                </div>
+                <div class="caption">
+                    Un vase rempli de fleurs
+                    <button class="play-button" onclick="document.getElementById('audio6').play()">▶️</button>
+                </div>
+                <audio id="audio6" controls style="display: none;">
+                    <source src="assets/Audio/Un-vase-rempli-de-fl.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+
+            <!-- Flashcard 7: Les Clés -->
+            <div class="polaroid">
+                <div class="image-container">
+                    <img src="assets/Les-cles.jpg" alt="Les clés" style="max-width: 100%; max-height: 100%;">
+                </div>
+                <div class="caption">
+                    Les clés
+                    <button class="play-button" onclick="document.getElementById('audio7').play()">▶️</button>
+                </div>
+                <audio id="audio7" controls style="display: none;">
+                    <source src="assets/Audio/Les-cles.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+
+            <!-- Flashcard 8: Suspendues à un Crochet -->
+            <div class="polaroid">
+                <div class="image-container">
+                    <img src="assets/Suspendues-a-un-crochet.jpg" alt="Suspendues à un crochet" style="max-width: 100%; max-height: 100%;">
+                </div>
+                <div class="caption">
+                    Suspendues à un crochet
+                    <button class="play-button" onclick="document.getElementById('audio8').play()">▶️</button>
+                </div>
+                <audio id="audio8" controls style="display: none;">
+                    <source src="assets/Audio/Suspendues-a-un-croc.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+
+            <!-- Flashcard 9: Le Salon -->
+            <div class="polaroid">
+                <div class="image-container">
+                    <img src="assets/Le-salon.jpg" alt="Le salon" style="max-width: 100%; max-height: 100%;">
+                </div>
+                <div class="caption">
+                    Le salon
+                    <button class="play-button" onclick="document.getElementById('audio9').play()">▶️</button>
+                </div>
+                <audio id="audio9" controls style="display: none;">
+                    <source src="assets/Audio/Le-salon.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+
+            <!-- Flashcard 10: L’Horloge Murale -->
+            <div class="polaroid">
+                <div class="image-container">
+                    <img src="assets/L-horloge-murale.jpg" alt="L’horloge murale" style="max-width: 100%; max-height: 100%;">
+                </div>
+                <div class="caption">
+                    L’horloge murale
+                    <button class="play-button" onclick="document.getElementById('audio10').play()">▶️</button>
+                </div>
+                <audio id="audio10" controls style="display: none;">
+                    <source src="assets/Audio/L-horloge murale.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+
+            <!-- Flashcard 11: Midi -->
+            <div class="polaroid">
+                <div class="image-container">
+                    <img src="assets/Midi.jpg" alt="Midi" style="max-width: 100%; max-height: 100%;">
+                </div>
+                <div class="caption">
+                    Midi
+                    <button class="play-button" onclick="document.getElementById('audio11').play()">▶️</button>
+                </div>
+                <audio id="audio11" controls style="display: none;">
+                    <source src="assets/Audio/Midi.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+
+            <!-- Flashcard 12: Une Plante en Pot -->
+            <div class="polaroid">
+                <div class="image-container">
+                    <img src="assets/Une-plante-en-pot.jpg" alt="Une plante en pot" style="max-width: 100%; max-height: 100%;">
+                </div>
+                <div class="caption">
+                    Une plante en pot
+                    <button class="play-button" onclick="document.getElementById('audio12').play()">▶️</button>
+                </div>
+                <audio id="audio12" controls style="display: none;">
+                    <source src="assets/Audio/Une-plante-en-pot.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+
+            <!-- Flashcard 13: Baignée de Lumière Naturelle -->
+            <div class="polaroid">
+                <div class="image-container">
+                    <img src="assets/Baignee-de-lumiere-naturelle.jpg" alt="Baignée de lumière naturelle" style="max-width: 100%; max-height: 100%;">
+                </div>
+                <div class="caption">
+                    Baignée de lumière naturelle
+                    <button class="play-button" onclick="document.getElementById('audio13').play()">▶️</button>
+                </div>
+                <audio id="audio13" controls style="display: none;">
+                    <source src="assets/Audio/Baignee-de lumiere-n.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+
+            <!-- Flashcard 14: L’Étagère -->
+            <div class="polaroid">
+                <div class="image-container">
+                    <img src="assets/L-etagere.jpg" alt="L’étagère" style="max-width: 100%; max-height: 100%;">
+                </div>
+                <div class="caption">
+                    L’étagère
+                    <button class="play-button" onclick="document.getElementById('audio14').play()">▶️</button>
+                </div>
+                <audio id="audio14" controls style="display: none;">
+                    <source src="assets/Audio/L-etagere.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+
+            <!-- Flashcard 15: Souvenirs de Vacances -->
+            <div class="polaroid">
+                <div class="image-container">
+                    <img src="assets/Souvenirs-de-vacances.jpg" alt="Souvenirs de vacances" style="max-width: 100%; max-height: 100%;">
+                </div>
+                <div class="caption">
+                    Souvenirs de vacances
+                    <button class="play-button" onclick="document.getElementById('audio15').play()">▶️</button>
+                </div>
+                <audio id="audio15" controls style="display: none;">
+                    <source src="assets/Audio/Souvenirs-de-vacance.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+
+            <!-- Flashcard 16: Un Cadre Photo Familial -->
+            <div class="polaroid">
+                <div class="image-container">
+                    <img src="assets/Un-cadre-photo-familial.jpg" alt="Un cadre photo familial" style="max-width: 100%; max-height: 100%;">
+                </div>
+                <div class="caption">
+                    Un cadre photo familial
+                    <button class="play-button" onclick="document.getElementById('audio16').play()">▶️</button>
+                </div>
+                <audio id="audio16" controls style="display: none;">
+                    <source src="assets/Audio/Un-cadre-photo-famil.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+
+            <!-- Flashcard 17: La Corbeille -->
+            <div class="polaroid">
+                <div class="image-container">
+                    <img src="assets/La-corbeille.jpg" alt="La corbeille" style="max-width: 100%; max-height: 100%;">
+                </div>
+                <div class="caption">
+                    La corbeille
+                    <button class="play-button" onclick="document.getElementById('audio17').play()">▶️</button>
+                </div>
+                <audio id="audio17" controls style="display: none;">
+                    <source src="assets/Audio/La-corbeille.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+
+            <!-- Flashcard 18: Magazines et Journaux -->
+            <div class="polaroid">
+                <div class="image-container">
+                    <img src="assets/Magazines-et-journaux.jpg" alt="Magazines et journaux" style="max-width: 100%; max-height: 100%;">
+                </div>
+                <div class="caption">
+                    Magazines et journaux
+                    <button class="play-button" onclick="document.getElementById('audio18').play()">▶️</button>
+                </div>
+                <audio id="audio18" controls style="display: none;">
+                    <source src="assets/Audio/Magazines-et-journau.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -880,9 +691,7 @@
         const translatableWords = document.querySelectorAll('.translatable');
         translatableWords.forEach(word => {
             word.addEventListener('click', (e) => {
-                // Stop event propagation to prevent the document click from hiding the translation immediately
                 e.stopPropagation();
-                // Toggle the 'active' class to show/hide the translation
                 word.classList.toggle('active');
             });
         });
@@ -893,6 +702,16 @@
                 word.classList.remove('active');
             });
         });
+
+        // Toggle between grid and list view
+        function toggleView(view) {
+            const container = document.getElementById('flashcards-container');
+            if (view === 'grid') {
+                container.classList.remove('list-view');
+            } else if (view === 'list') {
+                container.classList.add('list-view');
+            }
+        }
     </script>
 </body>
 
