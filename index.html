@@ -100,6 +100,12 @@
             align-items: center;
         }
 
+        .polaroid img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
         .caption {
             font-family: 'Courier New', monospace;
             font-size: 18px;
@@ -108,13 +114,6 @@
             align-items: center;
             justify-content: center;
         }
-
-        .polaroid img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
 
         .play-button {
             margin-left: 10px;
@@ -174,7 +173,7 @@
 
         @media (max-width: 480px) {
             .flashcards-container {
-                grid-template-columns: 1fr; /* 1 per row on mobile */
+                grid-template-columns: repeat(2, 1fr); /* 2 per row on mobile */
             }
         }
     </style>
@@ -373,7 +372,7 @@
             <!-- Flashcard 1: Le Coussin -->
             <div class="polaroid">
                 <div class="image-container">
-                    <img src="assets/Untitled design (2).jpg" alt="Le coussin" style="max-width: 100%; max-height: 100%;">
+                    <img src="assets/Untitled design (2).jpg" alt="Le coussin">
                 </div>
                 <div class="caption">
                     Le coussin
@@ -388,7 +387,7 @@
             <!-- Flashcard 2: Journée Tranquille -->
             <div class="polaroid">
                 <div class="image-container">
-                    <img src="assets/journee-tranquille.png" alt="Journée tranquille" style="max-width: 100%; max-height: 100%;">
+                    <img src="assets/journee-tranquille.png" alt="Journée tranquille">
                 </div>
                 <div class="caption">
                     Journée tranquille
@@ -403,7 +402,7 @@
             <!-- Flashcard 3: Dans le Couloir -->
             <div class="polaroid">
                 <div class="image-container">
-                    <img src="assets/Dans-le-couloir.png" alt="Dans le couloir" style="max-width: 100%; max-height: 100%;">
+                    <img src="assets/Dans-le-couloir.png" alt="Dans le couloir">
                 </div>
                 <div class="caption">
                     Dans le couloir
@@ -418,7 +417,7 @@
             <!-- Flashcard 4: Une Pile de Lettres -->
             <div class="polaroid">
                 <div class="image-container">
-                    <img src="assets/Une-pile-de-lettres.jpg" alt="Une pile de lettres" style="max-width: 100%; max-height: 100%;">
+                    <img src="assets/Une-pile-de-lettres.jpg" alt="Une pile de lettres">
                 </div>
                 <div class="caption">
                     Une pile de lettres
@@ -433,7 +432,7 @@
             <!-- Flashcard 5: La Console -->
             <div class="polaroid">
                 <div class="image-container">
-                    <img src="assets/La-console.jpg" alt="La console" style="max-width: 100%; max-height: 100%;">
+                    <img src="assets/La-console.jpg" alt="La console">
                 </div>
                 <div class="caption">
                     La console
@@ -448,7 +447,7 @@
             <!-- Flashcard 6: Un Vase Rempli de Fleurs -->
             <div class="polaroid">
                 <div class="image-container">
-                    <img src="assets/Un-vase-rempli-de-fleurs.jpg" alt="Un vase rempli de fleurs" style="max-width: 100%; max-height: 100%;">
+                    <img src="assets/Un-vase-rempli-de-fleurs.jpg" alt="Un vase rempli de fleurs">
                 </div>
                 <div class="caption">
                     Un vase rempli de fleurs
@@ -463,7 +462,7 @@
             <!-- Flashcard 7: Les Clés -->
             <div class="polaroid">
                 <div class="image-container">
-                    <img src="assets/Les-cles.jpg" alt="Les clés" style="max-width: 100%; max-height: 100%;">
+                    <img src="assets/Les-cles.jpg" alt="Les clés">
                 </div>
                 <div class="caption">
                     Les clés
@@ -478,7 +477,7 @@
             <!-- Flashcard 8: Suspendues à un Crochet -->
             <div class="polaroid">
                 <div class="image-container">
-                    <img src="assets/Suspendues-a-un-crochet.jpg" alt="Suspendues à un crochet" style="max-width: 100%; max-height: 100%;">
+                    <img src="assets/Suspendues-a-un-crochet.jpg" alt="Suspendues à un crochet">
                 </div>
                 <div class="caption">
                     Suspendues à un crochet
@@ -493,7 +492,7 @@
             <!-- Flashcard 9: Le Salon -->
             <div class="polaroid">
                 <div class="image-container">
-                    <img src="assets/Le-salon.jpg" alt="Le salon" style="max-width: 100%; max-height: 100%;">
+                    <img src="assets/Le-salon.jpg" alt="Le salon">
                 </div>
                 <div class="caption">
                     Le salon
@@ -508,7 +507,7 @@
             <!-- Flashcard 10: L’Horloge Murale -->
             <div class="polaroid">
                 <div class="image-container">
-                    <img src="assets/L-horloge-murale.jpg" alt="L’horloge murale" style="max-width: 100%; max-height: 100%;">
+                    <img src="assets/L-horloge-murale.jpg" alt="L’horloge murale">
                 </div>
                 <div class="caption">
                     L’horloge murale
@@ -523,7 +522,7 @@
             <!-- Flashcard 11: Midi -->
             <div class="polaroid">
                 <div class="image-container">
-                    <img src="assets/Midi.jpg" alt="Midi" style="max-width: 100%; max-height: 100%;">
+                    <img src="assets/Midi.jpg" alt="Midi">
                 </div>
                 <div class="caption">
                     Midi
@@ -538,7 +537,7 @@
             <!-- Flashcard 12: Une Plante en Pot -->
             <div class="polaroid">
                 <div class="image-container">
-                    <img src="assets/Une-plante-en-pot.jpg" alt="Une plante en pot" style="max-width: 100%; max-height: 100%;">
+                    <img src="assets/Une-plante-en-pot.jpg" alt="Une plante en pot">
                 </div>
                 <div class="caption">
                     Une plante en pot
@@ -553,7 +552,7 @@
             <!-- Flashcard 13: Baignée de Lumière Naturelle -->
             <div class="polaroid">
                 <div class="image-container">
-                    <img src="assets/Baignee-de-lumiere-naturelle.jpg" alt="Baignée de lumière naturelle" style="max-width: 100%; max-height: 100%;">
+                    <img src="assets/Baignee-de-lumiere-naturelle.jpg" alt="Baignée de lumière naturelle">
                 </div>
                 <div class="caption">
                     Baignée de lumière naturelle
@@ -568,7 +567,7 @@
             <!-- Flashcard 14: L’Étagère -->
             <div class="polaroid">
                 <div class="image-container">
-                    <img src="assets/L-etagere.jpg" alt="L’étagère" style="max-width: 100%; max-height: 100%;">
+                    <img src="assets/L-etagere.jpg" alt="L’étagère">
                 </div>
                 <div class="caption">
                     L’étagère
@@ -583,7 +582,7 @@
             <!-- Flashcard 15: Souvenirs de Vacances -->
             <div class="polaroid">
                 <div class="image-container">
-                    <img src="assets/Souvenirs-de-vacances.jpg" alt="Souvenirs de vacances" style="max-width: 100%; max-height: 100%;">
+                    <img src="assets/Souvenirs-de-vacances.jpg" alt="Souvenirs de vacances">
                 </div>
                 <div class="caption">
                     Souvenirs de vacances
@@ -598,7 +597,7 @@
             <!-- Flashcard 16: Un Cadre Photo Familial -->
             <div class="polaroid">
                 <div class="image-container">
-                    <img src="assets/Un-cadre-photo-familial.jpg" alt="Un cadre photo familial" style="max-width: 100%; max-height: 100%;">
+                    <img src="assets/Un-cadre-photo-familial.jpg" alt="Un cadre photo familial">
                 </div>
                 <div class="caption">
                     Un cadre photo familial
@@ -613,7 +612,7 @@
             <!-- Flashcard 17: La Corbeille -->
             <div class="polaroid">
                 <div class="image-container">
-                    <img src="assets/La-corbeille.jpg" alt="La corbeille" style="max-width: 100%; max-height: 100%;">
+                    <img src="assets/La-corbeille.jpg" alt="La corbeille">
                 </div>
                 <div class="caption">
                     La corbeille
@@ -628,7 +627,7 @@
             <!-- Flashcard 18: Magazines et Journaux -->
             <div class="polaroid">
                 <div class="image-container">
-                    <img src="assets/Magazines-et-journaux.jpg" alt="Magazines et journaux" style="max-width: 100%; max-height: 100%;">
+                    <img src="assets/Magazines-et-journaux.jpg" alt="Magazines et journaux">
                 </div>
                 <div class="caption">
                     Magazines et journaux
